@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>Faculty</title>
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="../css/bootstrap.min.css">
+      <!-- Typography CSS -->
+      <link rel="stylesheet" href="../css/typography.css">
+      <!-- Style CSS -->
+      <link rel="stylesheet" href="../css/style.css">
+      <!-- Respon6sive CSS -->
+      <link rel="stylesheet" href="../css/responsive.css">
+      
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-storage.js"></script>
+    <script src = "https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"> </script>
+
+    <style>
+      .modal-backdrop {
+    /* bug fix - no overlay */    
+         display: none;    
+      }
+    </style>
+   
+</head>
+   <body>
+      <!-- loader Start -->
+      <div id="loading">
+         <div id="loading-center">
+            <div class="loader">
+               <div class="cube">
+                  <div class="sides">
+                     <div class="top"></div>
+                     <div class="right"></div>
+                     <div class="bottom"></div>
+                     <div class="left"></div>
+                     <div class="front"></div>
+                     <div class="back"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- loader END -->
+      <!-- Wrapper Start -->
+      <div class="wrapper">
+         <!-- Sidebar  -->
+         <div class="iq-sidebar">
+            <div class="iq-sidebar-logo d-flex justify-content-between">
+               <a href="index-2.html">
+               <img src="images/logo.png" class="img-fluid" alt="">
+               <span>Faculty</span>
+               </a>
+               <div class="iq-menu-bt align-self-center">
+                  <div class="wrapper-menu">
+                     <div class="line-menu half start"></div>
+                     <div class="line-menu"></div>
+                     <div class="line-menu half end"></div>
+                  </div>
+               </div>
+            </div>
+            <div id="sidebar-scrollbar">
+               <nav class="iq-sidebar-menu">
+                  <ul class="iq-menu">
+                     <li class="iq-menu-title"><i class="ri-separator"></i><span>Main</span></li>
+                     <li class="">
+                        <a href="home.html" class="iq-waves-effect"><span>Dashboard</span></a>
+                     </li>
+                     <li class="active">
+                        <a href="addquestion.html" class="iq-waves-effect"><span>Add Question</span></a>
+                     </li>
+                     <li class="">
+                        <a href="../generatepaper.html" class="iq-waves-effect"><span>Generate Paper</span></a>
+                     </li>
+                  </ul>
+               </nav>
+               <div class="p-3"></div>
+            </div>
+         </div>
+         <!-- TOP Nav Bar -->
+         <div class="iq-top-navbar">
+            <div class="iq-navbar-custom">
+               <div class="iq-sidebar-logo">
+                  <div class="top-logo">
+                     <a href="index-2.html" class="logo">
+                     <img src="images/logo.png" class="img-fluid" alt="">
+                     <span>Faculty</span>
+                     </a>
+                  </div>
+               </div>
+               <div class="navbar-breadcrumb">
+                  <h5 class="mb-0">Add Question</h5>
+                  <nav aria-label="breadcrumb">
+                     <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+                        <!-- <li class="breadcrumb-item active" aria-current="page">Home</li> -->
+                     </ul>
+                  </nav>
+               </div>
+               <nav class="navbar navbar-expand-lg navbar-light p-0">
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <i class="ri-menu-3-line"></i>
+                  </button>
+                  <div class="iq-menu-bt align-self-center">
+                     <div class="wrapper-menu">
+                        <div class="line-menu half start"></div>
+                        <div class="line-menu"></div>
+                        <div class="line-menu half end"></div>
+                     </div>
+                  </div>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                     <ul class="navbar-nav ml-auto navbar-list">
+                        <li class="nav-item">
+                           <a class="search-toggle iq-waves-effect" href="#"><i class="ri-search-line"></i></a>
+                           <form action="#" class="search-box">
+                              <input type="text" class="text search-input" placeholder="Type here to search..." />
+                           </form>
+                        </li>
+                        
+                     </ul>
+                  </div>
+                  <ul class="navbar-list">
+                     <li>
+                        <a href="#" class="search-toggle iq-waves-effect bg-primary text-white"><img src="../images/user/1.jpg" class="img-fluid rounded" alt="user"></a>
+                        <div class="iq-sub-dropdown iq-user-dropdown">
+                           <div class="iq-card shadow-none m-0">
+                              <div class="iq-card-body p-0 ">
+                                 <div class="bg-primary p-3">
+                                    <h5 class="mb-0 text-white line-height">Hello <span id="username"></span></h5>
+                                    <!-- <span class="text-white font-size-12">Available</span> -->
+                                 </div>
+                                 <a href="#" class="iq-sub-card iq-bg-primary-hover">
+                                    <div class="media align-items-center">
+                                       <div class="rounded iq-card-icon iq-bg-primary">
+                                          <i class="ri-file-user-line"></i>
+                                       </div>
+                                       <div class="media-body ml-3">
+                                          <h6 class="mb-0 ">My Profile</h6>
+                                          <p class="mb-0 font-size-12">View personal profile details.</p>
+                                       </div>
+                                    </div>
+                                 </a>
+                                 <a href="#" class="iq-sub-card iq-bg-primary-success-hover">
+                                    <div class="media align-items-center">
+                                       <div class="rounded iq-card-icon iq-bg-success">
+                                          <i class="ri-profile-line"></i>
+                                       </div>
+                                       <div class="media-body ml-3">
+                                          <h6 class="mb-0 ">Edit Profile</h6>
+                                          <p class="mb-0 font-size-12">Modify your personal details.</p>
+                                       </div>
+                                    </div>
+                                 </a>
+                                 <div class="d-inline-block w-100 text-center p-3">
+                                    <a class="iq-bg-danger iq-sign-btn" href="" id="logout" role="button">Sign out<i class="ri-login-box-line ml-2"></i></a>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </li>
+                  </ul>
+               </nav>
+            </div>
+         </div>
+         <!-- TOP Nav Bar END -->
+         <!-- Page Content  -->
+         <div id="content-page" class="content-page">
+            <div class="container-fluid">
+               <div class="row  text-center">
+                  <!-- <div class="col-lg-3"></div> -->
+                     <div class="iq-card  col-lg-12">
+                        <div class="iq-card-header d-flex justify-content-between">
+                           <div class="iq-header-title">
+                              <h4 class="card-title">Add Question</h4>
+                           </div>
+                        </div>
+                        <div class="iq-card-body">
+                           <div class="row">
+                                 <div class="col-lg-3">
+                                 <select class="form-control" id="branch">
+                                     <option value="select" selected>Select Branch</option>
+                                     <option value="cse">CSE</option>
+                                     <option value="ece">ECE</option>
+                                     <option value="civil">CIVIL</option>
+                                     <option value="mech">MECH</option>
+                                     <option value="eee">EEE</option> 
+                                 </select>
+                                 </div>
+                                 <div class="col-lg-3">
+                                    <select class="form-control" id="sem" disabled>
+                                       <option value="select">Select Semister</option>
+                                       <option value="sem1">I</option>
+                                       <option value="sem2">II</option>
+                                       <option value="sem3">III</option>
+                                       <option value="sem4">IV</option>
+                                       <option value="sem5">V</option> 
+                                       <option value="sem6">VI</option> 
+                                       <option value="sem7">VII</option> 
+                                       <option value="sem8">VIII</option> 
+                                    </select>
+                                 </div>
+                                 <div class="col-lg-3">
+                                    <select class="form-control" id="scheme" disabled>
+                                       <option value="select">Select Scheme</option>
+                                       <option value="scheme13">Scheme 2013</option>
+                                       <option value="scheme17">Scheme 2017</option>
+                                    </select>
+                                 </div>
+                                 <div class="col-lg-3">
+                                    <select class="form-control" id="subject"disabled>
+                                       <option value="select">Select Subject</option>
+                                    </select>
+                                 </div>
+                           </div>
+                        </div>
+                        <div class="iq-card-body">
+                           <div class="accordion" id="accordion">
+                              <!-- <div class="card">
+                                <div class="card-header" id="headingOne">
+                                  <h2 class="mb-0">
+                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                      Collapsible Group Item #1
+                                    </button>
+                                  </h2>
+                                </div>
+                            
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                  <div class="card-body">
+                                    
+                                  </div>
+                                </div>
+                              </div> -->
+                              
+                           </div>
+                        </div>
+                     </div>
+               </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Wrapper END -->
+      <!-- Footer -->
+      <footer class="bg-white iq-footer">
+         <div class="container-fluid">
+            <div class="row">
+               <!-- <div class="col-lg-6 text-right">
+                  Copyright 2020 <a href="#">Sofbox</a> All Rights Reserved.
+               </div> -->
+            </div>
+         </div>
+      </footer>
+      <!-- Footer END -->
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="../js/jquery.min.js"></script>
+      <script src="../js/popper.min.js"></script>
+      <script src="../js/bootstrap.min.js"></script>
+      <!-- Appear JavaScript -->
+      <script src="../js/jquery.appear.js"></script>
+      <!-- Countdown JavaScript -->
+      <script src="../js/countdown.min.js"></script>
+      <!-- Counterup JavaScript -->
+      <script src="../js/waypoints.min.js"></script>
+      <script src="../js/jquery.counterup.min.js"></script>
+      <!-- Wow JavaScript -->
+      <script src="../js/wow.min.js"></script>
+      <!-- Apexcharts JavaScript -->
+      <script src="../js/apexcharts.js"></script>
+      <!-- Slick JavaScript -->
+      <script src="../js/slick.min.js"></script>
+      <!-- Select2 JavaScript -->
+      <script src="../js/select2.min.js"></script>
+      <!-- Owl Carousel JavaScript -->
+      <script src="../js/owl.carousel.min.js"></script>
+      <!-- Magnific Popup JavaScript -->
+      <script src="../js/jquery.magnific-popup.min.js"></script>
+      <!-- Smooth Scrollbar JavaScript -->
+      <script src="../js/smooth-scrollbar.js"></script>
+      <!-- lottie JavaScript -->
+      <script src="../js/lottie.js"></script>
+      <!-- Chart Custom JavaScript -->
+      <script src="../js/chart-custom.js"></script>
+      <!-- Custom JavaScript -->
+      <script src="../js/custom.js"></script>
+      <script src="../js/services/db.js"></script>
+      <script src="../js/services/getquestions.js"></script>
+      <script src="../js/services/main.js"></script>
+
+      <script>
+         var user;
+         $(document).ready(()=>{
+               user = JSON.parse(localStorage.getItem("user"));
+               if(user == ""){
+                  window.location = "index.html";
+               }
+               console.log(JSON.parse(localStorage.getItem("user")));
+               $('#username').text(user.email);
+         });
+         $('#logout').on('click',(e)=>{
+            e.preventDefault();
+            firebase.auth().signOut().then(()=>{
+               window.location = "../index.html";
+            });
+         });
+
+         var selectedsem;
+         var selectedscheme;
+         var selectedsubject;
+         var selectedexam;
+         var selectedbranch
+
+         $('#branch').change(()=>{
+            selectedbranch = $( "#branch option:selected" ).val();
+            // alert(selectedbranch);
+            if(selectedbranch != "select"){
+                $('#sem').prop('disabled', function(i, v) { return v ? !v : v; });
+                $('#sem').change(()=>{
+                    selectedsem = $( "#sem option:selected" ).val();
+                    // alert(selectedbranch+" / "+selectedsem);
+                    if(selectedsem != "select"){
+                        $('#scheme').prop('disabled', function(i, v) { return v ? !v : v; });
+                        $('#scheme').change(()=>{
+                            selectedscheme = $( "#scheme option:selected" ).val();
+                            // alert(selectedbranch+" / "+selectedsem+" / "+selectedscheme );
+                            if(selectedscheme != "select"){
+                                q();
+                                async function q(){
+                                    var subres = await a(selectedbranch,selectedsem,selectedscheme);
+                                    $('#subject').find('option').remove();
+                                    // console.log(subres);
+                                    $('#subject').append(`<option value="select"> 
+                                                                Select Subject
+                                                            </option>`);
+                                    subres.forEach((sub)=>{
+                                        // console.log(sub);
+                                        $('#subject').append(`<option value="${sub}"> 
+                                                                ${sub} 
+                                                            </option>`);
+                                    });
+                                }
+                                $('#subject').prop('disabled', function(i, v) { return v ? !v : v; });
+                                $('#subject').change(()=>{
+                                    selectedsubject = $( "#subject option:selected" ).val();
+                                    if(selectedsubject != "select"){
+                                       getlist(selectedbranch,selectedsem,selectedscheme,selectedsubject);
+                                    }else{
+                                        $('#exam').prop('disabled', function(i, v) { return v ? v : !v; });
+                                    }
+                                });
+                            }else{
+                                $('#subject').prop('disabled', function(i, v) { return v ? v : !v; });
+                                $('#exam').prop('disabled', function(i, v) { return v ? v : !v; });
+                            }           
+                        });
+                    }else{
+                        $('#scheme').prop('disabled', function(i, v) { return v ? v : !v; });
+                        $('#subject').prop('disabled', function(i, v) { return v ? v : !v; });
+                        $('#exam').prop('disabled', function(i, v) { return v ? v : !v; });
+                    }
+                });
+            }else{
+                $('#sem').prop('disabled', function(i, v) { return v ? v : !v; });
+                $('#scheme').prop('disabled', function(i, v) { return v ? v : !v; });
+                $('#subject').prop('disabled', function(i, v) { return v ? v : !v; });
+                $('#exam').prop('disabled', function(i, v) { return v ? v : !v; });
+            }
+         });
+
+         var cou = 1;
+
+         function getlist(selectedbranch,selectedsem,selectedscheme,selectedsubject){
+            $('#accordion').html('');
+            db.doc(`${selectedbranch}/${selectedsem}/${selectedscheme}/${selectedsubject}`)
+            .get()
+            .then((doc)=>{
+               for(let i=1;i<=5;i++){
+                  doc.ref.collection('unit'+i)
+                  .get()
+                  .then((doc)=>{
+                     $('#accordion').append(
+                        `
+                        <div class="card" style="border:1px solid gray;">
+                           <div class="card-header" id="heading${i}" style="background-color:#bbdefb;">
+                              <h2 class="mb-0">
+                                 <button style="width:100%" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse${i}" aria-expanded="true" aria-controls="collapseOne">
+                                    <span style="font-size:20px;font-weight:bold;color:#0d47a1">unit ${i}</span>
+                                 </button>
+                              </h2>
+                           </div>
+                              <div id="collapse${i}" class="collapse" aria-labelledby="heading${i}" data-parent="#accordion">
+                                 <div class="card-body">
+                                    <div class="accordion" id="inneraccordion">
+                                    ${
+                                       doc.docs.map(key => {
+                                          return `
+                                          <div class="card" style="border:1px solid blue;">
+                                             <div class="card-header" id="heading${i}${key.id}" style="background-color:#e3f2fd;">
+                                                <h2 class="mb-0">
+                                                   <button style="width:100%" class="btn btn-link" type="button" data-toggle="collapse" data-target="#inner${i}collapse${key.id}" aria-expanded="true" aria-controls="collapseOne">
+                                                      <span style="font-size:18px;">${key.id}</span>
+                                                   </button>
+                                                </h2>
+                                             </div>
+                                                                        
+                                             <div id="inner${i}collapse${key.id}" class="collapse" aria-labelledby="headingOne" data-parent="#inneraccordion">
+                                                <div class="card-body" id="card-body-${i}-${key.id}">
+                                                   ${
+                                                   Object.keys(key.data()).map(function (k) {
+                                                      if(k != "length"){
+                                                         return `
+                                                            <div id="${i}-${key.id}-${k}">
+                                                               <div class="row">
+                                                                  <div class="col-lg-9">
+                                                                     <input class="form-control" type="text" readonly value="${key.data()[k][0]}"/>
+                                                                  </div>
+                                                                  ${
+                                                                     key.data()[k][1] ?
+                                                                     `
+                                                                        <div class="col-lg-2" style="margin-top:8px;">
+                                                                           <img class="questionimg" data-toggle="modal" data-target="#ModalCenter-${i}-${key.id}-${k}" width="35" height="35" src="${key.data()[k][1]}"/>
+                                                                        </div>
+                                                                     `:`<div class="col-lg-2" style="margin-top:8px;"></div>`
+                                                                  }
+                                                                                             
+                                                                  <div class="col-lg-1" style="margin-top:8px;">
+                                                                     <button class="btn btn-warning mb-2" data-toggle="modal" data-target="#ModalCente-r${i}-${key.id}-${k}">Edit</button>
+                                                                  </div>
+                                                               </div>
+                                                            </div>
+                                                            <div class="modal fade" id="ModalCenter-${i}-${key.id}-${k}" tabindex="-1" role="dialog" aria-labelledby="ModalCenter-${i}-${key.id}-${k}Title" aria-hidden="true">
+                                                                     <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                        <div class="modal-content">
+                                                                           <div class="modal-header">
+                                                                              <h5 class="modal-title" id="ModalCenter-${i}-${key.id}-${k}Title">Image</h5>
+                                                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                 <span aria-hidden="true">&times;</span>
+                                                                              </button>
+                                                                           </div>
+                                                                           <div class="modal-body">
+                                                                              <img class="questionimg" width="450" height="450" src="${key.data()[k][1]}"/>
+                                                                           </div>
+                                                                        </div>
+                                                                     </div>
+                                                                  </div>
+                                                            <br>
+                                                         `
+                                                      }
+                                                   }).join(" ")
+                                                   }         
+                                                   <button class="btn btn-primary" onClick="appendnewrow('${i}-${key.id}')" id="btn-${i}-${key.id}">Add new</button>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          `
+                                       }).join(' ')
+                                    }<br>  
+                                    <button class="btn btn-primary" onClick="addpendnewmarks('btn-${i}','${i}')" id="btn-${i}">Add Marks</button>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        `
+                     );
+                  });
+                                             
+               }
+            });
+         }
+
+         function addpendnewmarks(a,unit){
+            $(`
+            <input class="form-control" type="text" onChange="insertunitintodb(this.value,${unit})" placeholder="Ex: 2marks"/><br>`
+            ).insertBefore('#'+a);
+         }
+
+         function insertunitintodb(val,unit){
+            console.log(`${selectedbranch}/${selectedsem}/${selectedscheme}/${selectedsubject}/unit${unit}/${val}`);
+            firebase.firestore().collection(`${selectedbranch}/${selectedsem}/${selectedscheme}/${selectedsubject}/unit${unit}`).doc(val)
+            .set({'length':0}).then(()=>{
+               getlist(selectedbranch,selectedsem,selectedscheme,selectedsubject);
+            });
+         }
+
+         function appendnewrow(a){
+            $(`
+               <div id="c-${cou}">
+                  <div class="row">
+                     <div class="col-lg-9">
+                        <input class="form-control" type="text" id="c-${cou}-q" placeholder="Enter Question"/>
+                     </div>
+                     <div class="col-lg-2" style="margin-top:8px;">
+                        <input class="form-control-file" id="c-${cou}-f" type="file" />
+                     </div>                                                                      
+                     <div class="col-lg-1" style="margin-top:8px;">
+                        <button class="btn btn-primary mb-2" onclick ="insertintodb('c-${cou}','${a}')">Add</button>
+                        <button class="btn btn-danger mb-2" id="close" onClick = "removerow('c-${cou}','${a}')">X</button>
+                     </div>
+                  </div><br>
+               </div>
+            `).insertBefore(`#btn-${a}`);
+            cou++;
+            // console.log(`#card-body-${a}`);
+         }
+
+         function removerow(row,root){
+            console.log(row);
+            $(`#card-body-${root} #${row}`).remove();
+         }
+
+         function insertintodb(b,c){
+            var que = $(`#${b}-q`).val();
+            let img = document.getElementById(`${b}-f`).files[0];
+            let exe = $(`#${b}-f`).val().split('\\').pop().split('.')[1];
+            console.log(exe);
+            if(que != ''){
+               console.log(`${selectedbranch}/${selectedsem}/${selectedscheme}/${selectedsubject}/unit${c.split('-')[0]}/${c.split('-')[1]}`);
+            
+               firebase.firestore().doc(`${selectedbranch}/${selectedsem}/${selectedscheme}/${selectedsubject}/unit${c.split('-')[0]}/${c.split('-')[1]}`)
+               .get()
+               .then((e)=>{
+                  var length = e.data().length;
+                  
+                  if(img){
+                     var storeref = firebase.storage().ref(`questions_images/${selectedbranch}-${selectedsem}-${selectedscheme}-${selectedsubject}-unit${c.split('-')[0]}-${c.split('-')[1]}-question${length+1}.${exe}`);
+                     var put = storeref.put(img);
+                     put.snapshot.ref.getDownloadURL().then((e)=>{
+                        let updatedata = {};
+                        updatedata[`question${length+1}`] = [que,e.toString()];
+                        updatedata['length'] = length+1;
+                        firebase.firestore().doc(`${selectedbranch}/${selectedsem}/${selectedscheme}/${selectedsubject}/unit${c.split('-')[0]}/${c.split('-')[1]}`)
+                        .update(updatedata).then(()=>{
+                           getlist(selectedbranch,selectedsem,selectedscheme,selectedsubject);
+                        });
+                     });
+                  }else{
+                     let updatedata = {};
+                     updatedata[`question${length+1}`] = [que,null];
+                     updatedata['length'] = length+1;
+                     firebase.firestore().doc(`${selectedbranch}/${selectedsem}/${selectedscheme}/${selectedsubject}/unit${c.split('-')[0]}/${c.split('-')[1]}`)
+                        .update(updatedata).then(()=>{
+                           getlist(selectedbranch,selectedsem,selectedscheme,selectedsubject);
+                     });
+                  }
+               });
+            }
+         }
+
+         
+      </script>
+
+   </body>
+</html>

@@ -9,7 +9,7 @@ function check_user(role){
             if(role == "admin"){
                 window.location = "admin/home.html";
             }
-            else if(role=="faculty"){
+            else{
                 window.location = 'faculty/home.html';
             }
 

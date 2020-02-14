@@ -7,10 +7,10 @@ function check_user(role){
             localStorage.setItem("user", luser);
 
             if(role == "admin"){
-                window.location = "/admin/home.html";
+                window.location = "admin/home.html";
             }
             else{
-                window.location = '/faculty/home.html';
+                window.location = 'faculty/home.html';
             }
 
         } else {

@@ -316,16 +316,19 @@
          var selectedbranch
 
          $('#branch').change(()=>{
+            $('#accordion').html('');
             selectedbranch = $( "#branch option:selected" ).val();
             // alert(selectedbranch);
             if(selectedbranch != "select"){
                 $('#sem').prop('disabled', function(i, v) { return v ? !v : v; });
                 $('#sem').change(()=>{
+                  $('#accordion').html('');
                     selectedsem = $( "#sem option:selected" ).val();
                     // alert(selectedbranch+" / "+selectedsem);
                     if(selectedsem != "select"){
                         $('#scheme').prop('disabled', function(i, v) { return v ? !v : v; });
                         $('#scheme').change(()=>{
+                           $('#accordion').html('');
                             selectedscheme = $( "#scheme option:selected" ).val();
                             // alert(selectedbranch+" / "+selectedsem+" / "+selectedscheme );
                             if(selectedscheme != "select"){
@@ -346,6 +349,7 @@
                                 }
                                 $('#subject').prop('disabled', function(i, v) { return v ? !v : v; });
                                 $('#subject').change(()=>{
+                                 $('#accordion').html('');
                                     selectedsubject = $( "#subject option:selected" ).val();
                                     if(selectedsubject != "select"){
                                        getlist(selectedbranch,selectedsem,selectedscheme,selectedsubject);

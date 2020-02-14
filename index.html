@@ -71,6 +71,17 @@
             </div>
         </section>
 
+        <div class="modal fade" style="height: 300px;width: 250px;top:50%;left:50%;transform: translate(-50%,-50%);" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-body" style="background-color: rgba(237, 239, 242, 1);">
+                    <center><img height="200" width="200" src="https://media.giphy.com/media/xTk9ZvMnbIiIew7IpW/giphy.gif" alt=""></center>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+
         <script src="js/services/db.js"></script>
         <script src="js/services/checkuser.js"></script>
         <script src="js/jquery.min.js"></script>
@@ -104,8 +115,21 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
         <script>
+
+            $(document).ready(()=>{
+                check();
+                console.log('ready');
+            });
             
-            check_user();
+            function check(){
+                user = JSON.parse(localStorage.getItem("user"));
+                if(user != null){
+                    const getuserrole = firebase.functions().httpsCallable('getuserrole');
+                    getuserrole({email:email}).then((res)=>{
+                        check_user(res.data);
+                    });
+                }
+            }
 
             toastr.options = {
                 "closeButton": true,"debug": false,"newestOnTop": true,"progressBar": true,"positionClass": "toast-top-right",
@@ -118,6 +142,7 @@
                 var email = $('#email').val();
                 var password = $('#password').val();
                 if(email != '' && password != ''){
+                    $('#staticBackdrop').modal('show'); 
                     console.log(email);
                     const getuserrole = firebase.functions().httpsCallable('getuserrole');
                     getuserrole({email:email}).then((res)=>{
@@ -137,7 +162,7 @@
                                             .update({
                                             times:itimes+1
                                             }).then(()=>{
-                                                console.log('updated')
+                                                $('#staticBackdrop').modal('hide');
                                                 check_user(res.data);
                                             })
                                         });
@@ -149,6 +174,7 @@
                                     });
                                 }else{
                                     toastr["error"](`Account not activated for <b>${email}</b> <p>contact admin.</p>`);
+                                    $('#staticBackdrop').modal('hide');
                                 }
                             });
                         })

@@ -256,6 +256,9 @@
                   $('#username').text(user.email);
                }
          });
+
+         // window.addEventListener("unload", function(event) { ... });
+
          $('#logout').on('click',(e)=>{
             e.preventDefault();
             firebase.auth().signOut().then(()=>{

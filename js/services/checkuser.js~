@@ -9,11 +9,7 @@ function check_user(role){
             if(role == "admin"){
                 window.location = "admin/home.html";
             }
-<<<<<<< HEAD
             else{
-=======
-            else if(role=="faculty"){
->>>>>>> 485827d70a92a30683fbfb2287f60654b006eb3f
                 window.location = 'faculty/home.html';
             }
 

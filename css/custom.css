@@ -6,8 +6,8 @@
 .login-main{
     border-radius: 10px;
     background: #ece8ff;
-    box-shadow: inset 5px 5px 10px #a5a2b3, 
-                inset -5px -5px 10px #ffffff;
+box-shadow: inset -15px -15px 30px #c9c5d9, 
+            inset 15px 15px 30px #ffffff;
 }
 
 #password,#email{

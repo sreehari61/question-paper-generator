@@ -1,0 +1,61 @@
+.sign-in-page{
+    background-color: #ece8ff;
+    height: 100vh;
+}
+
+.login-main{
+    border-radius: 10px;
+    background: #ece8ff;
+    box-shadow: inset 5px 5px 10px #a5a2b3, 
+                inset -5px -5px 10px #ffffff;
+}
+
+#password,#email{
+    border-radius:50px;
+    background: #ece8ff;
+    box-shadow:  10px 10px 20px #a5a2b3, 
+                -10px -10px 20px #ffffff;
+    padding-left: 60px;
+}
+.i{
+    position: absolute;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+    top:0;
+    /* background-color: red; */
+    width: 55px;
+    height: 45px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+#password:focus,#email:focus{
+    box-shadow: inset 5px 5px 10px #a5a2b3, 
+            inset -5px -5px 10px #ffffff,
+            10px 10px 20px #a5a2b3, 
+            -10px -10px 20px #ffffff;
+}
+
+.lbtn{
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    width: 150px;
+    height: 40px;
+    background: #55b9f3;
+    box-shadow: 5px 5px 15px #489dcf, 
+                -5px -5px 15px #62d5ff; 
+
+}
+
+.lbtn:hover{
+    border-radius: 10px;
+    color: white;
+    width: 150px;
+    height: 40px;
+    background: #55b9f3;
+    box-shadow: inset 15px 15px 30px #489dcf, 
+            inset -15px -15px 30px #62d5ff;
+
+}

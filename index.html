@@ -15,6 +15,7 @@
       <!-- Responsive CSS -->
       <link rel="stylesheet" href="../css/responsive.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+      <link rel="stylesheet" href="css/custom.css">
 
 
       <script src = "https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"> </script>
@@ -22,6 +23,7 @@
       <script src = "https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"> </script>
       <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
       <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-functions.js"></script>
+      <script src="https://kit.fontawesome.com/88ffbf7214.js" crossorigin="anonymous"></script>
    </head>
    <body>
       <!-- loader Start -->
@@ -43,26 +45,27 @@
       </div>
       <!-- loader END -->
         <!-- Sign in Start -->
-        <section class="sign-in-page bg-white">
-            <div class="container-fluid p-0" style="background: url(images/login/2.jpg) no-repeat 0 0; background-size: cover;">
+        <section class="sign-in-page">
+            <div class="container-fluid p-0">
                 <div class="row no-gutters">
                     <div class="col-lg-3 col-lg-0"></div>
-                    <div class="col-lg-6  align-self-center" style="height: 100vh;">
-                        <div class="sign-in-from" style="padding:50px; border: 2px solid white;margin-top:150px;">
-                            <h1 class="mb-0" style="color:white">Sign in</h1>
-                            <p style="color:white">Enter your Username and Password.</p>
-                            <form class="mt-4">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1" style="color:white">Username</label>
+                    <div class="col-lg-6  align-self-center">
+                        <div class="sign-in-from login-main" style="padding:50px;margin-top:150px;">
+                            <h1 class="mb-0">Sign in</h1>
+                            <!-- <p>Enter your Username and Password.</p> -->
+                            <form class="mt-4"><br>
+                                <div class="form-group" style="position: relative;">
                                     <input type="email" id="email" class="form-control mb-0" id="exampleInputEmail1" placeholder="Enter email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1" style="color:white">Password</label>
-                                    <a href="#" class="float-right">Forgot password?</a>
+                                    <span  class="i"><i class="fas fa-at"></i></span>
+                                </div><br>
+                                
+                                <div class="form-group" style="position: relative;">
                                     <input type="password" id="password" class="form-control mb-0" id="exampleInputPassword1" placeholder="Password">
+                                    <span  class="i"><i class="fas fa-lock"></i></span>
                                 </div>
                                 <div class="d-inline-block w-100">
-                                    <button type="submit" id="submit" class="btn float-right" style="background-color:#f50057;color:white">Sign in</button>
+                                    <a href="#" class="float-right">Forgot password?</a><br><br>
+                                    <button type="submit" id="submit" class="btn float-right lbtn">Sign in</button>
                                 </div>
                             </form>
                         </div>
@@ -118,7 +121,6 @@
 
             $(document).ready(()=>{
                 check();
-                console.log('ready');
             });
             
             function check(){

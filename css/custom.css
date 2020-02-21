@@ -1,3 +1,7 @@
+body{
+    background-color: #fdf8ff;
+}
+
 .sign-in-page{
     background-color: #ece8ff;
     height: 100vh;
@@ -6,8 +10,9 @@
 .login-main{
     border-radius: 10px;
     background: #ece8ff;
-    box-shadow: inset 5px 5px 10px #a5a2b3, 
-                inset -5px -5px 10px #ffffff;
+    background: linear-gradient(145deg, #d4d1e6, #fdf8ff);
+    box-shadow:  15px 15px 30px #c9c5d9, 
+             -15px -15px 30px #ffffff;
 }
 
 #password,#email{

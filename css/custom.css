@@ -15,8 +15,18 @@ box-shadow: inset -15px -15px 30px #c9c5d9,
     background: #ece8ff;
     box-shadow:  10px 10px 20px #a5a2b3, 
                 -10px -10px 20px #ffffff;
-    padding-left: 60px;
+    padding-left: 50px;
+    border-bottom: 2px solid #ece8ff;
 }
+
+.emailerror,.pwderror{
+    margin-top:10px;
+    padding-left: 50px;
+    color:#f44336;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
 .i{
     position: absolute;
     text-align: center;

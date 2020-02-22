@@ -50,18 +50,20 @@
                 <div class="row no-gutters">
                     <div class="col-lg-3 col-lg-0"></div>
                     <div class="col-lg-6  align-self-center">
-                        <div class="sign-in-from login-main" style="padding:50px;margin-top:150px;">
+                        <div class="sign-in-from login-main" style="padding:50px;margin-top:130px;">
                             <h1 class="mb-0">Sign in</h1>
-                            <!-- <p>Enter your Username and Password.</p> -->
+                            <p style="margin-top:-10px; border-bottom: 10px solid #55b9f3; width: 130px;border-radius: 100%; filter:blur(3px);"></p>
                             <form class="mt-4"><br>
                                 <div class="form-group" style="position: relative;">
                                     <input type="email" id="email" class="form-control mb-0" id="exampleInputEmail1" placeholder="Enter email">
                                     <span  class="i"><i class="fas fa-at"></i></span>
-                                </div><br>
+                                    <p class="emailerror"><span style="color:#ece8ff">.</span></p>
+                                </div>
                                 
                                 <div class="form-group" style="position: relative;">
                                     <input type="password" id="password" class="form-control mb-0" id="exampleInputPassword1" placeholder="Password">
                                     <span  class="i"><i class="fas fa-lock"></i></span>
+                                    <p class="pwderror"><span style="color:#ece8ff">.</span></p>
                                 </div>
                                 <div class="d-inline-block w-100">
                                     <a href="#" class="float-right">Forgot password?</a><br><br>
@@ -143,7 +145,25 @@
                 e.preventDefault();
                 var email = $('#email').val();
                 var password = $('#password').val();
-                if(email != '' && password != ''){
+                if(email == ''){
+                    $('#email').css('border-bottom','2px solid #f44336');
+                    $('.emailerror').text('Email required.');
+                }else if(!email.match(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/)){
+                    $('#email').css('border-bottom','2px solid #f44336');
+                    $('.emailerror').text('Enter a valid Email.');
+                }else{
+                    $('#email').css('border-bottom',' 2px solid #ece8ff');
+                    $('.emailerror').html('<span style="color:#ece8ff">.</span>');
+                }
+                if(password == ''){
+                    $('#password').css('border-bottom','2px solid #f44336');
+                    $('.pwderror').text('Password required.');
+                }else{
+                    $('#password').css('border-bottom',' 2px solid #ece8ff');
+                    $('.pwderror').html('<span style="color:#ece8ff">.</span>');
+                }
+                if(email != '' && password != '' && email.match(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/)){
+                    $('#password').css('background-color','#ece8ff');
                     $('#staticBackdrop').modal('show'); 
                     console.log(email);
                     const getuserrole = firebase.functions().httpsCallable('getuserrole');

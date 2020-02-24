@@ -271,7 +271,7 @@
             $('#fc').text(s.size);
          });
 
-         firebase.firestore().collection('quescount').doc('count').get().then(s=>{
+         firebase.firestore().collection('extras').doc('question_count').get().then(s=>{
             $('#qc').text(s.data().count);
          });
 

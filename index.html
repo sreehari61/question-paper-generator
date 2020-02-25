@@ -129,7 +129,7 @@
                 user = JSON.parse(localStorage.getItem("user"));
                 if(user != null){
                     const getuserrole = firebase.functions().httpsCallable('getuserrole');
-                    getuserrole({email:email}).then((res)=>{
+                    getuserrole({email:user.email}).then((res)=>{
                         check_user(res.data);
                     });
                 }

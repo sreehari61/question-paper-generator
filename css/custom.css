@@ -1,3 +1,7 @@
+body,.tbback{
+    background-color: #ece8ff;
+}
+
 .sign-in-page{
     background-color: #ece8ff;
     height: 100vh;
@@ -68,4 +72,26 @@ box-shadow: inset -15px -15px 30px #c9c5d9,
     box-shadow: inset 15px 15px 30px #489dcf, 
             inset -15px -15px 30px #62d5ff;
 
+}
+
+table{
+    border-radius: 10px;
+    background: #ece8ff;
+    box-shadow: inset -15px -15px 30px #c9c5d9, 
+            inset 15px 15px 30px #ffffff;
+}
+
+/* table tr {
+    background: #ece8ff;
+    box-shadow:  10px 10px 20px #a5a2b3, 
+                -10px -10px 20px #ffffff;
+} */
+table tr:hover{
+    transform: scale(1.01);
+    cursor: pointer;
+    background-color: #d1c4e9;
+}
+
+.btn-success{
+    width:85px;
 }

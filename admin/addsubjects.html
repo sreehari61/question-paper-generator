@@ -63,6 +63,9 @@
                             <a href="home.html" class="iq-waves-effect"><span>Dashboard</span></a>
                         </li>
                         <li>
+                           <a href="admin.html" class="iq-waves-effect"><span>Admin</span></a>
+                        </li>
+                        <li>
                             <a href="faculty.html" class="iq-waves-effect"><span>Faculty</span></a>
                         </li>
                         <li>
@@ -158,21 +161,31 @@
                         </div>
                         <div class="iq-card-body">
                             <form>
-                                <div class="form-row">
-                                    <div class="col">
-                                        <input type="text" class="form-control" placeholder="Ex: cse">
-                                    </div><span style="font-size: 25px;">/</span>
-                                    <div class="col">
-                                        <input type="text" class="form-control form-control-sm" placeholder="Ex: sem1">
-                                    </div><span style="font-size: 25px;">/</span>
-                                    <div class="col">
-                                        <input type="text" class="form-control form-control-sm" placeholder="Ex: scheme17">
-                                    </div><span style="font-size: 25px;">/</span>
-                                    <div class="col">
-                                        <input type="text" class="form-control form-control-sm" placeholder="Ex: Computer Networks">
+                                 <div class="row">
+                                    <div class="col-lg-4"></div>
+                                    <div class="col-lg-4">
+                                       <select class="form-control" id="degree">
+                                          <option value="select" selected>Select Degree</option>
+                                          <option value="BTech">BTech</option>
+                                          <option value="MTech">MTech</option>
+                                       </select><br><br>
                                     </div>
-                                </div><br>
-                                <button class="btn btn-primary">Add</button>
+                                 </div>
+                                 <div class="form-row">
+                                    <div class="col">
+                                        <input type="text" id="branch" class="form-control" placeholder="Ex: Computer Science Engineering">
+                                    </div><span style="font-size: 25px;">/</span>
+                                    <div class="col">
+                                        <input type="text" id="scheme" class="form-control form-control-sm" placeholder="Ex: scheme17">
+                                    </div><span style="font-size: 25px;">/</span>
+                                    <div class="col">
+                                        <input type="text" id="sem" class="form-control form-control-sm" placeholder="Ex: semister-I">
+                                    </div><span style="font-size: 25px;">/</span>
+                                    <div class="col">
+                                        <input type="text" id="subject" class="form-control form-control-sm" placeholder="Ex: Computer Networks">
+                                    </div>
+                                 </div><br>
+                                 <button class="btn btn-primary" id="add">Add</button>
                             </form>
                         </div>
                     </div>
@@ -241,13 +254,22 @@
             });
          });
 
-         firebase.firestore().collection('faculty').get().then(s=>{
-            $('#fc').text(s.size);
+         $('#add').on('click',(e)=>{
+            e.preventDefault();
+            var degree = $( "select#degree option:checked" ).val();
+            var branch = $('#branch');
+            var sem = $('#sem');
+            var scheme = $('#scheme');
+            var subject = $('#subject');
+            if(degree != '' && branch.val() != '' && sem.val() != '' && scheme.val() != '' && subject.val() != ''){
+               firebase.firestore().doc(`${degree}/${branch.val()}/${scheme.val()}/${sem.val()}/subjects/${subject.val()}`)
+               .set({})
+               .then(()=>{
+                  alert('subject added');
+               });
+            }
          });
-
-         firebase.firestore().collection('quescount').doc('count').get().then(s=>{
-            $('#qc').text(s.data().count);
-         });
+         
 
       </script>
    </body>

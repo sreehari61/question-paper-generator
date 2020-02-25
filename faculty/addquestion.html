@@ -181,27 +181,37 @@
                         </div>
                         <div class="iq-card-body">
                            <div class="row">
+                              <div class="col-lg-4"></div>
+                              <div class="col-lg-4">
+                                 <select class="form-control" id="degree">
+                                    <option value="select" selected>Select Degree</option>
+                                    <option value="BTech">BTech</option>
+                                    <option value="MTech">MTech</option>
+                                 </select><br><br>
+                              </div>
+                           </div>
+                           <div class="row">
                                  <div class="col-lg-3">
                                  <select class="form-control" id="branch">
                                      <option value="select" selected>Select Branch</option>
-                                     <option value="cse">CSE</option>
-                                     <option value="ece">ECE</option>
-                                     <option value="civil">CIVIL</option>
-                                     <option value="mech">MECH</option>
-                                     <option value="eee">EEE</option> 
+                                     <option value="computer science engineering">CSE</option>
+                                     <option value="electronics and communication engineering">ECE</option>
+                                     <option value="civil engineering">CIVIL</option>
+                                     <option value="mechanical engineering">MECH</option>
+                                     <option value="electrical and electronics engineering">EEE</option> 
                                  </select>
                                  </div>
                                  <div class="col-lg-3">
                                     <select class="form-control" id="sem" disabled>
                                        <option value="select">Select Semister</option>
-                                       <option value="sem1">I</option>
-                                       <option value="sem2">II</option>
-                                       <option value="sem3">III</option>
-                                       <option value="sem4">IV</option>
-                                       <option value="sem5">V</option> 
-                                       <option value="sem6">VI</option> 
-                                       <option value="sem7">VII</option> 
-                                       <option value="sem8">VIII</option> 
+                                       <option value="Semister-I">I</option>
+                                       <option value="Semister-II">II</option>
+                                       <option value="Semister-III">III</option>
+                                       <option value="Semister-IV">IV</option>
+                                       <option value="Semister-V">V</option> 
+                                       <option value="Semister-VI">VI</option> 
+                                       <option value="Semister-VII">VII</option> 
+                                       <option value="Semister-VIII">VIII</option> 
                                     </select>
                                  </div>
                                  <div class="col-lg-3">
@@ -309,78 +319,85 @@
             });
          });
 
+         var selecteddegree;
          var selectedsem;
          var selectedscheme;
          var selectedsubject;
          var selectedexam;
          var selectedbranch
-
-         $('#branch').change(()=>{
-            $('#accordion').html('');
-            selectedbranch = $( "#branch option:selected" ).val();
-            // alert(selectedbranch);
-            if(selectedbranch != "select"){
-                $('#sem').prop('disabled', function(i, v) { return v ? !v : v; });
-                $('#sem').change(()=>{
+         $('#degree').change(()=>{
+            selecteddegree = $( "#degree option:selected" ).val();
+            if(selecteddegree != "select")
+            {
+               $('#branch').change(()=>{
                   $('#accordion').html('');
-                    selectedsem = $( "#sem option:selected" ).val();
-                    // alert(selectedbranch+" / "+selectedsem);
-                    if(selectedsem != "select"){
-                        $('#scheme').prop('disabled', function(i, v) { return v ? !v : v; });
-                        $('#scheme').change(()=>{
-                           $('#accordion').html('');
-                            selectedscheme = $( "#scheme option:selected" ).val();
-                            // alert(selectedbranch+" / "+selectedsem+" / "+selectedscheme );
-                            if(selectedscheme != "select"){
-                                q();
-                                async function q(){
-                                    var subres = await a(selectedbranch,selectedsem,selectedscheme);
-                                    $('#subject').find('option').remove();
-                                    // console.log(subres);
-                                    $('#subject').append(`<option value="select"> 
-                                                                Select Subject
-                                                            </option>`);
-                                    subres.forEach((sub)=>{
-                                        // console.log(sub);
-                                        $('#subject').append(`<option value="${sub}"> 
-                                                                ${sub} 
-                                                            </option>`);
-                                    });
-                                }
-                                $('#subject').prop('disabled', function(i, v) { return v ? !v : v; });
-                                $('#subject').change(()=>{
+                  selectedbranch = $( "#branch option:selected" ).val();
+                  // alert(selectedbranch);
+                  if(selectedbranch != "select"){
+                     $('#sem').prop('disabled', function(i, v) { return v ? !v : v; });
+                     $('#sem').change(()=>{
+                        $('#accordion').html('');
+                        selectedsem = $( "#sem option:selected" ).val();
+                        // alert(selectedbranch+" / "+selectedsem);
+                        if(selectedsem != "select"){
+                              $('#scheme').prop('disabled', function(i, v) { return v ? !v : v; });
+                              $('#scheme').change(()=>{
                                  $('#accordion').html('');
-                                    selectedsubject = $( "#subject option:selected" ).val();
-                                    if(selectedsubject != "select"){
-                                       getlist(selectedbranch,selectedsem,selectedscheme,selectedsubject);
-                                    }else{
-                                        $('#exam').prop('disabled', function(i, v) { return v ? v : !v; });
+                                 selectedscheme = $( "#scheme option:selected" ).val();
+                                 // alert(selectedbranch+" / "+selectedsem+" / "+selectedscheme );
+                                 if(selectedscheme != "select"){
+                                    q();
+                                    async function q(){
+                                          var subres = await a(selectedbranch,selectedsem,selectedscheme);
+                                          $('#subject').find('option').remove();
+                                          // console.log(subres);
+                                          $('#subject').append(`<option value="select"> 
+                                                                     Select Subject
+                                                                  </option>`);
+                                          subres.forEach((sub)=>{
+                                             // console.log(sub);
+                                             $('#subject').append(`<option value="${sub}"> 
+                                                                     ${sub} 
+                                                                  </option>`);
+                                          });
                                     }
-                                });
-                            }else{
-                                $('#subject').prop('disabled', function(i, v) { return v ? v : !v; });
-                                $('#exam').prop('disabled', function(i, v) { return v ? v : !v; });
-                            }           
-                        });
-                    }else{
-                        $('#scheme').prop('disabled', function(i, v) { return v ? v : !v; });
-                        $('#subject').prop('disabled', function(i, v) { return v ? v : !v; });
-                        $('#exam').prop('disabled', function(i, v) { return v ? v : !v; });
-                    }
-                });
-            }else{
-                $('#sem').prop('disabled', function(i, v) { return v ? v : !v; });
-                $('#scheme').prop('disabled', function(i, v) { return v ? v : !v; });
-                $('#subject').prop('disabled', function(i, v) { return v ? v : !v; });
-                $('#exam').prop('disabled', function(i, v) { return v ? v : !v; });
+                                    $('#subject').prop('disabled', function(i, v) { return v ? !v : v; });
+                                    $('#subject').change(()=>{
+                                       $('#accordion').html('');
+                                          selectedsubject = $( "#subject option:selected" ).val();
+                                          if(selectedsubject != "select"){
+                                             getlist(selecteddegree,selectedbranch,selectedsem,selectedscheme,selectedsubject);
+                                          }else{
+                                             $('#exam').prop('disabled', function(i, v) { return v ? v : !v; });
+                                          }
+                                    });
+                                 }else{
+                                    $('#subject').prop('disabled', function(i, v) { return v ? v : !v; });
+                                    $('#exam').prop('disabled', function(i, v) { return v ? v : !v; });
+                                 }           
+                              });
+                        }else{
+                              $('#scheme').prop('disabled', function(i, v) { return v ? v : !v; });
+                              $('#subject').prop('disabled', function(i, v) { return v ? v : !v; });
+                              $('#exam').prop('disabled', function(i, v) { return v ? v : !v; });
+                        }
+                     });
+                  }else{
+                     $('#sem').prop('disabled', function(i, v) { return v ? v : !v; });
+                     $('#scheme').prop('disabled', function(i, v) { return v ? v : !v; });
+                     $('#subject').prop('disabled', function(i, v) { return v ? v : !v; });
+                     $('#exam').prop('disabled', function(i, v) { return v ? v : !v; });
+                  }
+               });
             }
          });
+         
 
          var cou = 1;
 
-         function getlist(selectedbranch,selectedsem,selectedscheme,selectedsubject){
+         function getlist(selecteddegree,selectedbranch,selectedsem,selectedscheme,selectedsubject){
             $('#accordion').html('');
-            db.doc(`${selectedbranch}/${selectedscheme}/${selectedsem}/${selectedsubject}`)
+            db.doc(`${selecteddegree}/${selectedbranch}/${selectedscheme}/${selectedsem}/subjects/${selectedsubject}`)
             .get()
             .then((doc)=>{
                for(let i=1;i<=5;i++){
@@ -484,10 +501,10 @@
          }
 
          function insertunitintodb(val,unit){
-            console.log(`${selectedbranch}/${selectedsem}/${selectedscheme}/${selectedsubject}/unit${unit}/${val}`);
-            firebase.firestore().collection(`${selectedbranch}/${selectedsem}/${selectedscheme}/${selectedsubject}/unit${unit}`).doc(val)
+            console.log(`${selecteddegree}/${selectedbranch}/${selectedscheme}/${selectedsem}/subjects/${selectedsubject}/unit${unit}/${val}`);
+            firebase.firestore().collection(`${selecteddegree}/${selectedbranch}/${selectedscheme}/${selectedsem}/subjects/${selectedsubject}/unit${unit}`).doc(val)
             .set({'length':0}).then(()=>{
-               getlist(selectedbranch,selectedsem,selectedscheme,selectedsubject);
+               getlist(selecteddegree,selectedbranch,selectedsem,selectedscheme,selectedsubject);
             });
          }
 

@@ -256,13 +256,13 @@
 
          $('#add').on('click',(e)=>{
             e.preventDefault();
-            var degree = $( "select#degree option:checked" ).val();
+            var degree = $( "select#degree option:checked" ).val().toLowerCase();
             var branch = $('#branch');
             var sem = $('#sem');
             var scheme = $('#scheme');
             var subject = $('#subject');
             if(degree != '' && branch.val() != '' && sem.val() != '' && scheme.val() != '' && subject.val() != ''){
-               firebase.firestore().doc(`${degree}/${branch.val()}/${scheme.val()}/${sem.val()}/subjects/${subject.val()}`)
+               firebase.firestore().doc(`${degree.toLowerCase()}/${branch.val().toLowerCase()}/${scheme.val().toLowerCase()}/${sem.val().toLowerCase()}/subjects/${subject.val().toLowerCase()}`)
                .set({})
                .then(()=>{
                   alert('subject added');

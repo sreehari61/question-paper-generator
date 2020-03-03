@@ -75,8 +75,8 @@
             get(selectedbranch,selectedsem,selectedscheme,selectedsubject,selectedexam);
         });
 
-        async function a(branch,sem,scheme){
-            return await getsubjects(branch,sem,scheme);
+        async function a(degree,branch,sem,scheme){
+            return await getsubjects(degree,branch,sem,scheme);
         }
         
 

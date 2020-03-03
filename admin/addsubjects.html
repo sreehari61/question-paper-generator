@@ -114,7 +114,7 @@
                                     <h5 class="mb-0 text-white line-height">Hello <span id="username"></span></h5>
                                     <span class="text-white font-size-12">Available</span>
                                  </div>
-                                 <a href="#" class="iq-sub-card iq-bg-primary-hover">
+                                 <!-- <a href="#" class="iq-sub-card iq-bg-primary-hover">
                                     <div class="media align-items-center">
                                        <div class="rounded iq-card-icon iq-bg-primary">
                                           <i class="ri-file-user-line"></i>
@@ -135,7 +135,7 @@
                                           <p class="mb-0 font-size-12">Modify your personal details.</p>
                                        </div>
                                     </div>
-                                 </a>
+                                 </a> -->
                                  <div class="d-inline-block w-100 text-center p-3">
                                     <a class="iq-bg-danger iq-sign-btn" href="" id="logout" role="button">Sign out<i class="ri-login-box-line ml-2"></i></a>
                                  </div>
@@ -256,13 +256,13 @@
 
          $('#add').on('click',(e)=>{
             e.preventDefault();
-            var degree = $( "select#degree option:checked" ).val().toLowerCase();
+            var degree = $( "select#degree option:checked" ).val();
             var branch = $('#branch');
             var sem = $('#sem');
             var scheme = $('#scheme');
             var subject = $('#subject');
             if(degree != '' && branch.val() != '' && sem.val() != '' && scheme.val() != '' && subject.val() != ''){
-               firebase.firestore().doc(`${degree.toLowerCase()}/${branch.val().toLowerCase()}/${scheme.val().toLowerCase()}/${sem.val().toLowerCase()}/subjects/${subject.val().toLowerCase()}`)
+               firebase.firestore().doc(`${degree}/${branch.val()}/${scheme.val()}/${sem.val()}/subjects/${subject.val()}`)
                .set({})
                .then(()=>{
                   alert('subject added');

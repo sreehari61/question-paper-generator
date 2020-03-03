@@ -134,7 +134,7 @@
                                     <h5 class="mb-0 text-white line-height">Hello <span id="username"></span></h5>
                                     <!-- <span class="text-white font-size-12">Available</span> -->
                                  </div>
-                                 <a href="#" class="iq-sub-card iq-bg-primary-hover">
+                                 <!-- <a href="#" class="iq-sub-card iq-bg-primary-hover">
                                     <div class="media align-items-center">
                                        <div class="rounded iq-card-icon iq-bg-primary">
                                           <i class="ri-file-user-line"></i>
@@ -155,7 +155,7 @@
                                           <p class="mb-0 font-size-12">Modify your personal details.</p>
                                        </div>
                                     </div>
-                                 </a>
+                                 </a> -->
                                  <div class="d-inline-block w-100 text-center p-3">
                                     <a class="iq-bg-danger iq-sign-btn" href="" id="logout" role="button">Sign out<i class="ri-login-box-line ml-2"></i></a>
                                  </div>
@@ -194,11 +194,11 @@
                                  <div class="col-lg-3">
                                  <select class="form-control" id="branch">
                                      <option value="select" selected>Select Branch</option>
-                                     <option value="computer science engineering">CSE</option>
-                                     <option value="electronics and communication engineering">ECE</option>
-                                     <option value="civil engineering">CIVIL</option>
-                                     <option value="mechanical engineering">MECH</option>
-                                     <option value="electrical and electronics engineering">EEE</option> 
+                                     <option value="Computer Science Engineering">CSE</option>
+                                     <option value="Electronics and Communication Engineering">ECE</option>
+                                     <option value="Civil Engineering">CIVIL</option>
+                                     <option value="Mechanical Engineering">MECH</option>
+                                     <option value="Electrical and Electronics Engineering">EEE</option> 
                                  </select>
                                  </div>
                                  <div class="col-lg-3">
@@ -217,8 +217,8 @@
                                  <div class="col-lg-3">
                                     <select class="form-control" id="scheme" disabled>
                                        <option value="select">Select Scheme</option>
-                                       <option value="scheme13">Scheme 2013</option>
-                                       <option value="scheme17">Scheme 2017</option>
+                                       <option value="Scheme13">Scheme 2013</option>
+                                       <option value="Scheme17">Scheme 2017</option>
                                     </select>
                                  </div>
                                  <div class="col-lg-3">
@@ -306,7 +306,7 @@
          var user;
          $(document).ready(()=>{
                user = JSON.parse(localStorage.getItem("user"));
-               if(user == ""){
+               if(user == null){
                   window.location = "index.html";
                }
                console.log(JSON.parse(localStorage.getItem("user")));
@@ -348,7 +348,7 @@
                                  if(selectedscheme != "select"){
                                     q();
                                     async function q(){
-                                          var subres = await a(selectedbranch,selectedsem,selectedscheme);
+                                          var subres = await a(selecteddegree,selectedbranch,selectedsem,selectedscheme);
                                           $('#subject').find('option').remove();
                                           // console.log(subres);
                                           $('#subject').append(`<option value="select"> 
@@ -443,14 +443,15 @@
                                                                   ${
                                                                      key.data()[k][1] ?
                                                                      `
-                                                                        <div class="col-lg-2" style="margin-top:8px;">
+                                                                        <div class="col-lg-1" style="margin-top:8px;">
                                                                            <img class="questionimg" data-toggle="modal" data-target="#ModalCenter-${i}-${key.id}-${k}" width="35" height="35" src="${key.data()[k][1]}"/>
                                                                         </div>
-                                                                     `:`<div class="col-lg-2" style="margin-top:8px;"></div>`
+                                                                     `:`<div class="col-lg-1" style="margin-top:8px;"></div>`
                                                                   }
                                                                                              
-                                                                  <div class="col-lg-1" style="margin-top:8px;">
-                                                                     <button class="btn btn-warning mb-2" data-toggle="modal" data-target="#ModalCente-r${i}-${key.id}-${k}">Edit</button>
+                                                                  <div class="col-lg-2" style="margin-top:8px;">
+                                                                     <button class="btn btn-danger mb-2" data-toggle="modal" data-target="#ModalCenter${i}-${key.id}-${k}">X</button>
+                                                                     <button class="btn btn-warning mb-2" data-toggle="modal" data-target="#ModalCenter${i}-${key.id}-${k}">Edit</button>
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -538,34 +539,37 @@
             var que = $(`#${b}-q`).val();
             let img = document.getElementById(`${b}-f`).files[0];
             let exe = $(`#${b}-f`).val().split('\\').pop().split('.')[1];
-            console.log(exe);
+            // console.log(exe);
             if(que != ''){
-               console.log(`${selectedbranch}/${selectedsem}/${selectedscheme}/${selectedsubject}/unit${c.split('-')[0]}/${c.split('-')[1]}`);
-            
-               firebase.firestore().doc(`${selectedbranch}/${selectedsem}/${selectedscheme}/${selectedsubject}/unit${c.split('-')[0]}/${c.split('-')[1]}`)
+               firebase.firestore().doc(`${selecteddegree}/${selectedbranch}/${selectedscheme}/${selectedsem}/subjects/${selectedsubject}/unit${c.split('-')[0]}/${c.split('-')[1]}`)
                .get()
                .then((e)=>{
                   var length = e.data().length;
                   
                   if(img){
-                     var storeref = firebase.storage().ref(`questions_images/${selectedbranch}-${selectedsem}-${selectedscheme}-${selectedsubject}-unit${c.split('-')[0]}-${c.split('-')[1]}-question${length+1}.${exe}`);
+                     var storeref = firebase.storage().ref(`questions_images/${selecteddegree}-${selectedbranch}-${selectedscheme}-${selectedsem}-${selectedsubject}-unit${c.split('-')[0]}-${c.split('-')[1]}-question${length+1}.${exe}`);
                      var put = storeref.put(img);
                      put.snapshot.ref.getDownloadURL().then((e)=>{
                         let updatedata = {};
                         updatedata[`question${length+1}`] = [que,e.toString()];
                         updatedata['length'] = length+1;
-                        firebase.firestore().doc(`${selectedbranch}/${selectedsem}/${selectedscheme}/${selectedsubject}/unit${c.split('-')[0]}/${c.split('-')[1]}`)
+                        firebase.firestore().doc(`${selecteddegree}/${selectedbranch}/${selectedscheme}/${selectedsem}/subjects/${selectedsubject}/unit${c.split('-')[0]}/${c.split('-')[1]}`)
                         .update(updatedata).then(()=>{
-                           getlist(selectedbranch,selectedsem,selectedscheme,selectedsubject);
+                           getlist(selecteddegree,selectedbranch,selectedsem,selectedscheme,selectedsubject);
                         });
                      });
                   }else{
                      let updatedata = {};
                      updatedata[`question${length+1}`] = [que,null];
                      updatedata['length'] = length+1;
-                     firebase.firestore().doc(`${selectedbranch}/${selectedsem}/${selectedscheme}/${selectedsubject}/unit${c.split('-')[0]}/${c.split('-')[1]}`)
+                     firebase.firestore().doc(`${selecteddegree}/${selectedbranch}/${selectedscheme}/${selectedsem}/subjects/${selectedsubject}/unit${c.split('-')[0]}/${c.split('-')[1]}`)
                         .update(updatedata).then(()=>{
-                           getlist(selectedbranch,selectedsem,selectedscheme,selectedsubject);
+                           getlist(selecteddegree,selectedbranch,selectedsem,selectedscheme,selectedsubject);
+                           firebase.firestore().doc('extras/question_count').get()
+                           .then((e)=>{
+                              c = e.data()['count']+1;
+                              firebase.firestore().doc('extras/question_count').update({'count':c})
+                           });
                      });
                   }
                });

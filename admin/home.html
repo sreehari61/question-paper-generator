@@ -116,7 +116,7 @@
                                     <span class="text-white" id="rolea"></span>&nbsp;,&nbsp;<span class="text-white" id="rolef"></span><br>
                                     <span class="text-white font-size-12">Available </span>
                                  </div>
-                                 <a href="#" class="iq-sub-card iq-bg-primary-hover">
+                                 <!-- <a href="#" class="iq-sub-card iq-bg-primary-hover">
                                     <div class="media align-items-center">
                                        <div class="rounded iq-card-icon iq-bg-primary">
                                           <i class="ri-file-user-line"></i>
@@ -137,7 +137,7 @@
                                           <p class="mb-0 font-size-12">Modify your personal details.</p>
                                        </div>
                                     </div>
-                                 </a>
+                                 </a> -->
                                  <div class="d-inline-block w-100 text-center p-3">
                                     <a class="iq-bg-danger iq-sign-btn" href="" id="logout" role="button">Sign out<i class="ri-login-box-line ml-2"></i></a>
                                  </div>
@@ -153,20 +153,50 @@
          <!-- Page Content  -->
          <div id="content-page" class="content-page">
             <div class="container-fluid">
+               <div class="row"><div class="text-center iq-mb-3 col-lg-1"></div></div>
                <div class="row">
-                <div class="text-center iq-mb-3 col-lg-3"></div>
-                    <div class="card text-center iq-mb-3 col-lg-3">
+                  <div class="text-center iq-mb-3 col-lg-3"></div>
+                     <div class="card text-center iq-mb-3 col-lg-2">
                         <div class="card-body">
-                        <h4 class="card-title">Faculty</h4>
-                        <p class="card-text" id="fc">0</p>
+                           <h4 class="card-title">Admins</h4>
+                           <p class="card-text" id="ac">0</p>
                         </div>
-                    </div>&emsp;
-                    <div class="card text-center iq-mb-3 col-lg-3">
+                     </div>&emsp;
+                     <div class="card text-center iq-mb-3 col-lg-2">
+                           <div class="card-body">
+                              <h4 class="card-title">Faculties</h4>
+                              <p class="card-text" id="fc">0</p>
+                           </div>
+                     </div>&emsp;
+                     <div class="card text-center iq-mb-3 col-lg-2">
+                           <div class="card-body">
+                              <h4 class="card-title">Questions</h4>
+                              <p class="card-text" id="qc">0</p>
+                           </div>
+                     </div>&emsp;
+               </div>
+               <div class="row">
+                  <div class="text-center iq-mb-3 col-lg-3"></div>
+                     <div class="card text-center iq-mb-3 col-lg-3">
                         <div class="card-body">
-                        <h4 class="card-title">Questions</h4>
-                        <p class="card-text" id="qc">0</p>
+                           <h4 class="card-title">Branches</h4>
+                           <p class="card-text" id="bc">0</p>
                         </div>
-                    </div>&emsp;
+                     </div>&emsp;
+                     <div class="card text-center iq-mb-3 col-lg-3">
+                           <div class="card-body">
+                              <h4 class="card-title">Subjects&emsp;</h4>
+                              <p class="card-text" id="sc">0</p>
+                           </div>
+                     </div>&emsp;
+                     <!-- <div class="card text-center iq-mb-3 col-lg-3">
+                           <div class="card-body">
+                              <h4 class="card-title">Questions</h4>
+                              <p class="card-text" id="qc">0</p>
+                           </div>
+                     </div>&emsp; -->
+               </div>
+                    
                     <!-- <div class="card text-center iq-mb-3 col-lg-3">
                      <div class="card-body">
                      <input type="email" name="" id="adminrole" autocomplete>
@@ -176,7 +206,6 @@
                      <button type="submit" id="setfaciltyrole">set faciltyrole</button>
                      </div>
                  </div>&emsp; -->
-               </div>
             </div>
          </div>
       </div>
@@ -269,6 +298,10 @@
 
          firebase.firestore().collection('faculty').get().then(s=>{
             $('#fc').text(s.size);
+         });
+
+         firebase.firestore().collection('admin').get().then(s=>{
+            $('#ac').text(s.size);
          });
 
          firebase.firestore().collection('extras').doc('question_count').get().then(s=>{

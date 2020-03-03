@@ -97,9 +97,9 @@ function get4question(questions,c){
 
 
 
-async function getsubjects(branch,sem,scheme){
+async function getsubjects(degree,branch,sem,scheme){
     var items;
-    var a = db.collection(`${branch}/${sem}/${scheme}`);
+    var a = db.collection(`${degree}/${branch}/${scheme}/${sem}/subjects`);
     items = await getsubjectsid(a);
     return items;
 }

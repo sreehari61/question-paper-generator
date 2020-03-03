@@ -255,6 +255,7 @@
       <script src="../js/custom.js"></script>
       <script>
          var user;
+         var ccount = 0;
          $(document).ready(()=>{
                user = JSON.parse(localStorage.getItem("user"));
                if(user == null){
@@ -296,16 +297,28 @@
             });
          });
 
-         firebase.firestore().collection('faculty').get().then(s=>{
-            $('#fc').text(s.size);
+         // firebase.firestore().collection('faculty').get().then(s=>{
+         //    $('#fc').text(s.size);
+         // });
+
+         firebase.firestore().collection('faculty').onSnapshot((doc)=>{
+            $('#fc').text(doc.size);
          });
 
-         firebase.firestore().collection('admin').get().then(s=>{
-            $('#ac').text(s.size);
+         firebase.firestore().collection('admin').onSnapshot((doc)=>{
+            $('#ac').text(doc.size);
          });
 
-         firebase.firestore().collection('extras').doc('question_count').get().then(s=>{
-            $('#qc').text(s.data().count);
+         firebase.firestore().collection('extras').doc('question_count').onSnapshot((doc)=>{
+            $('#qc').text(doc.data().count);
+         });
+
+         firebase.firestore().collection('extras').doc('branch_count').onSnapshot((doc)=>{
+            $('#bc').text(doc.data().count);
+         });
+
+         firebase.firestore().collection('extras').doc('subjects_count').onSnapshot((doc)=>{
+            $('#sc').text(doc.data().count);
          });
 
          $('#addadminrole').on('click',(e)=>{

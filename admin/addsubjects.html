@@ -262,10 +262,91 @@
             var scheme = $('#scheme');
             var subject = $('#subject');
             if(degree != '' && branch.val() != '' && sem.val() != '' && scheme.val() != '' && subject.val() != ''){
-               firebase.firestore().doc(`${degree}/${branch.val()}/${scheme.val()}/${sem.val()}/subjects/${subject.val()}`)
-               .set({})
-               .then(()=>{
-                  alert('subject added');
+               // firebase.firestore().doc(`${degree}/${branch.val()}/${scheme.val()}/${sem.val()}/subjects/${subject.val()}`)
+               // .set({})
+               // .then(()=>{
+               //    alert('subject added');
+               // });
+               // 
+               firebase.firestore().collection('BTech').where("branch", "==", branch.val()).get()
+               .then((e1) => {
+                  console.log(e1.size);
+                  if(e1.size == 0){
+                     var s1 = e1.size;
+                     firebase.firestore().collection('MTech').where("branch", "==", branch.val()).get()
+                     .then((e2) => {
+                        console.log(e2.size);
+                        if(e1.size == 0 && e2.size == 0){
+                           var s1 = e.size;
+                           firebase.firestore().collection('extras').doc('branch_count').get().then(s=>{
+                              var c = s.data().count;
+                              firebase.firestore().collection('extras').doc('branch_count').update({
+                                 count:c+1
+                              }).then(()=>{
+                              console.log('updated')});
+                              firebase.firestore().doc(`${degree}/${branch.val()}/${scheme.val()}/${sem.val()}/subjects/${subject.val()}`)
+                              .set({})
+                              .then(()=>{
+                                 firebase.firestore().doc(`${degree}/${branch.val()}`).set({
+                                    branch:branch.val()
+                                 }).then(()=>{  
+                                    firebase.firestore().collection('extras').doc('subjects_count')
+                                    .get()
+                                    .then(s=>{
+                                       var c = s.data().count;
+                                       firebase.firestore().collection('extras').doc('subjects_count').update({
+                                          count:c+1
+                                       }).then(()=>{
+                                          alert(`subject ${subject.val()} is added.`);
+                                       })
+                                    });
+                                 })
+                              });
+                           });                      
+                        }else{
+                           firebase.firestore().doc(`${degree}/${branch.val()}/${scheme.val()}/${sem.val()}/subjects/${subject.val()}`)
+                           .set({})
+                           .then(()=>{
+                              firebase.firestore().doc(`${degree}/${branch.val()}`).set({
+                                 branch:branch.val()
+                              }).then(()=>{  
+                                 firebase.firestore().collection('extras').doc('subjects_count')
+                                 .get()
+                                 .then(s=>{
+                                    var c = s.data().count;
+                                    firebase.firestore().collection('extras').doc('subjects_count').update({
+                                       count:c+1
+                                    }).then(()=>{
+                                       alert(`subject ${subject.val()} is added.`);
+                                    })
+                                 });
+                              })
+                           });
+                        }
+                     });
+                  }else{
+                     firebase.firestore().doc(`${degree}/${branch.val()}/${scheme.val()}/${sem.val()}/subjects/${subject.val()}`)
+                        .set({})
+                        .then(()=>{
+                        firebase.firestore().doc(`${degree}/${branch.val()}`).set({
+                           branch:branch.val()
+                        }).then(()=>{  
+                           firebase.firestore().collection('extras').doc('subjects_count')
+                           .get()
+                           .then(s=>{
+                              var c = s.data().count;
+                              firebase.firestore().collection('extras').doc('subjects_count').update({
+                                 count:c+1
+                              }).then(()=>{
+                                 alert(`subject ${subject.val()} is added.`);
+                              })
+                           });
+                        })
+                     });
+                  }
+               })
+               .catch((e)=>{
+                  console.log(e);
                });
             }
          });

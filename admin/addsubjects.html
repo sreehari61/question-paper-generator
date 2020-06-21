@@ -74,6 +74,9 @@
                         <li class="active">
                             <a href="addsubjects.html" class="iq-waves-effect"><span>Add Subjects</span></a>
                         </li>
+                        <li>
+                           <a href="subjects.html" class="iq-waves-effect"><span>Subjects</span></a>
+                        </li>
                   </ul>
                </nav>
                <div class="p-3"></div>
@@ -241,8 +244,8 @@
          var user;
          $(document).ready(()=>{
                user = JSON.parse(localStorage.getItem("user"));
-               if(user == ""){
-                  window.location = "index.html";
+               if(user == null){
+                  window.location = "../index.html";
                }
                console.log(JSON.parse(localStorage.getItem("user")));
                $('#username').text(user.email);
@@ -297,7 +300,21 @@
                                        firebase.firestore().collection('extras').doc('subjects_count').update({
                                           count:c+1
                                        }).then(()=>{
-                                          alert(`subject ${subject.val()} is added.`);
+                                          firebase.firestore().doc(`extras/subjects`)
+                                          .get()
+                                          .then((doc)=>{
+                                             var c = doc.data().count
+                                             console.log(c);
+                                             let updatedata = {};
+                                             updatedata[`subject_${c+1}`] = [degree,branch.val(),scheme.val(),sem.val(),subject.val()];
+                                             updatedata['count'] = c+1;
+                                             firebase.firestore().doc(`extras/subjects`)
+                                             .update(updatedata)
+                                             .then(()=>{
+                                                alert(`subject ${subject.val()} is added.`);
+                                             })
+                                          })
+                                          // alert(`subject ${subject.val()} is added.`);
                                        })
                                     });
                                  })
@@ -338,7 +355,20 @@
                               firebase.firestore().collection('extras').doc('subjects_count').update({
                                  count:c+1
                               }).then(()=>{
-                                 alert(`subject ${subject.val()} is added.`);
+                                 firebase.firestore().doc(`extras/subjects`)
+                                 .get()
+                                 .then((doc)=>{
+                                    var c = doc.data().count
+                                    console.log(c);
+                                    let updatedata = {};
+                                    updatedata[`subject_${c+1}`] = [degree,branch.val(),scheme.val(),sem.val(),subject.val()];
+                                    updatedata['count'] = c+1;
+                                    firebase.firestore().doc(`extras/subjects`)
+                                    .update(updatedata)
+                                    .then(()=>{
+                                       alert(`subject ${subject.val()} is added.`);
+                                    })
+                                 })
                               })
                            });
                         })

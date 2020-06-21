@@ -22,7 +22,7 @@
    </head>
    <body>
       <!-- loader Start -->
-      <div id="loading">
+      <!-- <div id="loading">
          <div id="loading-center">
             <div class="loader">
                <div class="cube">
@@ -37,7 +37,7 @@
                </div>
             </div>
          </div>
-      </div>
+      </div> -->
       <!-- loader END -->
       <!-- Wrapper Start -->
       <div class="wrapper">
@@ -74,6 +74,12 @@
                      </li>
                      <li>
                         <a href="addsubjects.html" class="iq-waves-effect"><span>Add Subjects</span></a>
+                     </li>
+                     <li>
+                        <a href="subjects.html" class="iq-waves-effect"><span>Subjects</span></a>
+                     </li>
+                     <li>
+                        <a href="paperdesign.html" class="iq-waves-effect"><span>Paper design</span></a>
                      </li>
                   </ul>
                </nav>
@@ -114,7 +120,7 @@
                                  <div class="bg-primary p-3">
                                     <h5 class="mb-0 text-white line-height">Hello <span id="username"></span></h5>
                                     <span class="text-white" id="rolea"></span>&nbsp;,&nbsp;<span class="text-white" id="rolef"></span><br>
-                                    <span class="text-white font-size-12">Available </span>
+                                    <!-- <span class="text-white font-size-12">Available </span> -->
                                  </div>
                                  <!-- <a href="#" class="iq-sub-card iq-bg-primary-hover">
                                     <div class="media align-items-center">
@@ -189,12 +195,6 @@
                               <p class="card-text" id="sc">0</p>
                            </div>
                      </div>&emsp;
-                     <!-- <div class="card text-center iq-mb-3 col-lg-3">
-                           <div class="card-body">
-                              <h4 class="card-title">Questions</h4>
-                              <p class="card-text" id="qc">0</p>
-                           </div>
-                     </div>&emsp; -->
                </div>
                     
                     <!-- <div class="card text-center iq-mb-3 col-lg-3">
@@ -317,7 +317,7 @@
             $('#bc').text(doc.data().count);
          });
 
-         firebase.firestore().collection('extras').doc('subjects_count').onSnapshot((doc)=>{
+         firebase.firestore().collection('extras').doc('subjects').onSnapshot((doc)=>{
             $('#sc').text(doc.data().count);
          });
 

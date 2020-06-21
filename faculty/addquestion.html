@@ -15,17 +15,18 @@
       <!-- Respon6sive CSS -->
       <link rel="stylesheet" href="../css/responsive.css">
       
-    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-storage.js"></script>
-    <script src = "https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"> </script>
+      <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-storage.js"></script>
+      <script src = "https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"> </script>
+      <script src="https://use.fontawesome.com/67078989d3.js"></script>
 
-    <style>
-      .modal-backdrop {
-    /* bug fix - no overlay */    
-         display: none;    
-      }
-    </style>
+      <style>
+         .modal-backdrop {
+      /* bug fix - no overlay */    
+            display: none;    
+         }
+      </style>
    
 </head>
    <body>
@@ -193,12 +194,12 @@
                            <div class="row">
                                  <div class="col-lg-3">
                                  <select class="form-control" id="branch">
-                                     <option value="select" selected>Select Branch</option>
-                                     <option value="Computer Science Engineering">CSE</option>
-                                     <option value="Electronics and Communication Engineering">ECE</option>
-                                     <option value="Civil Engineering">CIVIL</option>
-                                     <option value="Mechanical Engineering">MECH</option>
-                                     <option value="Electrical and Electronics Engineering">EEE</option> 
+                                    <option value="select" selected>Select Branch</option>
+                                    <option value="Computer Science Engineering">CSE</option>
+                                    <option value="Electronics and Communication Engineering">ECE</option>
+                                    <option value="Civil Engineering">CIVIL</option>
+                                    <option value="Mechanical Engineering">MECH</option>
+                                    <option value="Electrical and Electronics Engineering">EEE</option> 
                                  </select>
                                  </div>
                                  <div class="col-lg-3">
@@ -230,21 +231,21 @@
                         </div>
                         <div class="iq-card-body">
                            <div class="accordion" id="accordion">
-                              <!-- <div class="card">
-                                <div class="card-header" id="headingOne">
-                                  <h2 class="mb-0">
-                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                      Collapsible Group Item #1
-                                    </button>
-                                  </h2>
-                                </div>
-                            
-                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                  <div class="card-body">
-                                    
-                                  </div>
-                                </div>
-                              </div> -->
+                                 <!-- <div class="card">
+                                 <div class="card-header" id="headingOne">
+                                    <h2 class="mb-0">
+                                       <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                       Collapsible Group Item #1
+                                       </button>
+                                    </h2>
+                                 </div>
+                              
+                                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                       
+                                    </div>
+                                 </div>
+                                 </div> -->
                               
                            </div>
                         </div>
@@ -307,7 +308,7 @@
          $(document).ready(()=>{
                user = JSON.parse(localStorage.getItem("user"));
                if(user == null){
-                  window.location = "index.html";
+                  window.location = "../index.html";
                }
                console.log(JSON.parse(localStorage.getItem("user")));
                $('#username').text(user.email);
@@ -407,12 +408,15 @@
                      $('#accordion').append(
                         `
                         <div class="card" style="border:1px solid gray;">
-                           <div class="card-header" id="heading${i}" style="background-color:#bbdefb;">
-                              <h2 class="mb-0">
-                                 <button style="width:100%" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse${i}" aria-expanded="true" aria-controls="collapseOne">
-                                    <span style="font-size:20px;font-weight:bold;color:#0d47a1">unit ${i}</span>
-                                 </button>
-                              </h2>
+                           <div class="card-header" id="heading${i}" style="">
+                              <div style="width:100%;">
+                                 <h2 class="mb-0" style="float:left;width:100%">
+                                    <button style="width:100%" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse${i}" aria-expanded="true" aria-controls="collapseOne">
+                                       <span style="font-size:20px;font-weight:bold;color:#0d47a1">unit ${i}</span>
+                                    </button>
+                                 </h2>
+                                 
+                              </div>
                            </div>
                               <div id="collapse${i}" class="collapse" aria-labelledby="heading${i}" data-parent="#accordion">
                                  <div class="card-body">
@@ -420,13 +424,16 @@
                                     ${
                                        doc.docs.map(key => {
                                           return `
-                                          <div class="card" style="border:1px solid blue;">
-                                             <div class="card-header" id="heading${i}${key.id}" style="background-color:#e3f2fd;">
-                                                <h2 class="mb-0">
-                                                   <button style="width:100%" class="btn btn-link" type="button" data-toggle="collapse" data-target="#inner${i}collapse${key.id}" aria-expanded="true" aria-controls="collapseOne">
-                                                      <span style="font-size:18px;">${key.id}</span>
-                                                   </button>
-                                                </h2>
+                                          <div class="card" style="border:1px solid gray;">
+                                             <div class="card-header" id="heading${i}${key.id}">
+                                                <div style="width:100%;">
+                                                   <h2 class="mb-0" style="float:left;width:97%">
+                                                      <button style="width:100%" class="btn btn-link" type="button" data-toggle="collapse" data-target="#inner${i}collapse${key.id}" aria-expanded="true" aria-controls="collapseOne">
+                                                         <span style="font-size:18px;">${key.id}</span>
+                                                      </button>
+                                                   </h2>
+                                                   <button class="" style="float:right;background:none;border:none;margin-top:10px;color:red;font-weight:bold">X</button>
+                                                </div>
                                              </div>
                                                                         
                                              <div id="inner${i}collapse${key.id}" class="collapse" aria-labelledby="headingOne" data-parent="#inneraccordion">
@@ -482,7 +489,7 @@
                                           `
                                        }).join(' ')
                                     }<br>  
-                                    <button class="btn btn-primary" onClick="addpendnewmarks('btn-${i}','${i}')" id="btn-${i}">Add Marks</button>
+                                    <button class="btn btn-primary" onClick="appendnewmarks('btn-${i}','${i}')" id="btn-${i}">Add Marks</button>
                                     </div>
                                  </div>
                               </div>
@@ -495,10 +502,17 @@
             });
          }
 
-         function addpendnewmarks(a,unit){
+         function appendnewmarks(a,unit){
             $(`
-            <input class="form-control" type="text" onChange="insertunitintodb(this.value,${unit})" placeholder="Ex: 2marks"/><br>`
-            ).insertBefore('#'+a);
+            <div class="row" id="${unit}" style="margin-bottom:20px">
+               <input class="form-control" type="text" style="width:90%"  onChange="insertunitintodb(this.value,${unit})" placeholder="Ex: 2marks"/>
+               &emsp;&emsp;&emsp;<button class="btn btn-danger" style="width:40px" onclick="removenewmarks(${unit})">X</button><br>
+            </div>
+            `).insertBefore('#'+a);
+         }
+
+         function removenewmarks(unit){
+            $(`#${unit}`).remove();
          }
 
          function insertunitintodb(val,unit){

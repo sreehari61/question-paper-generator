@@ -2,54 +2,98 @@
 <html lang="en">
 
 <head>
-      <!-- Required meta tags -->
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Admin</title>
-      <!-- Bootstrap CSS -->
-      <link rel="stylesheet" href="../css/bootstrap.min.css">
-      <!-- Typography CSS -->
-      <link rel="stylesheet" href="../css/typography.css">
-      <!-- Style CSS -->
-      <link rel="stylesheet" href="../css/style.css">
-      <link rel="stylesheet" href="../css/custom.css">
-      <!-- Responsive CSS -->
-      <link rel="stylesheet" href="../css/responsive.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <title>Admin</title>
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="../css/bootstrap.min.css">
+   <!-- Typography CSS -->
+   <link rel="stylesheet" href="../css/typography.css">
+   <!-- Style CSS -->
+   <link rel="stylesheet" href="../css/style.css">
+   <link rel="stylesheet" href="../css/custom.css">
+   <!-- Responsive CSS -->
+   <link rel="stylesheet" href="../css/responsive.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
-      <script src = "https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"> </script>
-      <script src = "https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
-      <script src = "https://www.gstatic.com/firebasejs/7.6.1/firebase-functions.js"></script>
-      <script src = "https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"> </script>
-   </head>
-   <body>
-      <!-- loader Start -->
-      <div id="loading">
-         <div id="loading-center">
-            <div class="loader">
-               <div class="cube">
-                  <div class="sides">
-                     <div class="top"></div>
-                     <div class="right"></div>
-                     <div class="bottom"></div>
-                     <div class="left"></div>
-                     <div class="front"></div>
-                     <div class="back"></div>
-                  </div>
+   <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"> </script>
+   <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-functions.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"> </script>
+</head>
+
+<body>
+   <!-- loader Start -->
+   <div id="loading">
+      <div id="loading-center">
+         <div class="loader">
+            <div class="cube">
+               <div class="sides">
+                  <div class="top"></div>
+                  <div class="right"></div>
+                  <div class="bottom"></div>
+                  <div class="left"></div>
+                  <div class="front"></div>
+                  <div class="back"></div>
                </div>
             </div>
          </div>
       </div>
-      <!-- loader END -->
-      <!-- Wrapper Start -->
-      <div class="wrapper">
-         <!-- Sidebar  -->
-         <div class="iq-sidebar">
-            <div class="iq-sidebar-logo d-flex justify-content-between">
-               <a href="index-2.html">
+   </div>
+   <!-- loader END -->
+   <!-- Wrapper Start -->
+   <div class="wrapper">
+      <!-- Sidebar  -->
+      <div class="iq-sidebar">
+         <div class="iq-sidebar-logo d-flex justify-content-between">
+            <a href="index-2.html">
                <!-- <img src="../images/logo.png" class="img-fluid" alt=""> -->
                <span>Admin</span>
-               </a>
+            </a>
+            <div class="iq-menu-bt align-self-center">
+               <div class="wrapper-menu">
+                  <div class="line-menu half start"></div>
+                  <div class="line-menu"></div>
+                  <div class="line-menu half end"></div>
+               </div>
+            </div>
+         </div>
+         <div id="sidebar-scrollbar">
+            <nav class="iq-sidebar-menu">
+               <ul class="iq-menu">
+                  <li class="iq-menu-title"><i class="ri-separator"></i><span>Main</span></li>
+                  <li>
+                     <a href="home.html" class="iq-waves-effect"><span>Dashboard</span></a>
+                  </li>
+                  <li>
+                     <a href="admin.html" class="iq-waves-effect"><span>Admin</span></a>
+                  </li>
+                  <li class="active">
+                     <a href="faculty.html" class="iq-waves-effect"><span>Faculty</span></a>
+                  </li>
+                  <li>
+                     <a href="addfaculty.html" class="iq-waves-effect"><span>Add Faculty</span></a>
+                  </li>
+                  <li>
+                     <a href="addsubjects.html" class="iq-waves-effect"><span>Add Subjects</span></a>
+                  </li>
+                  <li>
+                     <a href="subjects.html" class="iq-waves-effect"><span>Subjects</span></a>
+                  </li>
+               </ul>
+            </nav>
+            <div class="p-3"></div>
+         </div>
+      </div>
+      <!-- TOP Nav Bar -->
+      <div class="iq-top-navbar">
+         <div class="iq-navbar-custom">
+            <nav class="navbar navbar-expand-lg navbar-light p-0">
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <i class="ri-menu-3-line"></i>
+               </button>
                <div class="iq-menu-bt align-self-center">
                   <div class="wrapper-menu">
                      <div class="line-menu half start"></div>
@@ -57,67 +101,29 @@
                      <div class="line-menu half end"></div>
                   </div>
                </div>
-            </div>
-            <div id="sidebar-scrollbar">
-               <nav class="iq-sidebar-menu">
-                  <ul class="iq-menu">
-                     <li class="iq-menu-title"><i class="ri-separator"></i><span>Main</span></li>
-                     <li>
-                        <a href="home.html" class="iq-waves-effect"><span>Dashboard</span></a>
+               <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav ml-auto navbar-list">
+                     <li class="nav-item">
+                        <a class="search-toggle iq-waves-effect" href="#"><i class="ri-search-line"></i></a>
+                        <form action="#" class="search-box">
+                           <input type="text" class="text search-input" placeholder="Type here to search..." />
+                        </form>
                      </li>
-                     <li>
-                        <a href="admin.html" class="iq-waves-effect"><span>Admin</span></a>
-                     </li>
-                     <li class="active">
-                        <a href="faculty.html" class="iq-waves-effect"><span>Faculty</span></a>
-                     </li>
-                     <li>
-                        <a href="addfaculty.html" class="iq-waves-effect"><span>Add Faculty</span></a>
-                     </li>
-                     <li>
-                        <a href="addsubjects.html" class="iq-waves-effect"><span>Add Subjects</span></a>
-                     </li>
+
                   </ul>
-               </nav>
-               <div class="p-3"></div>
-            </div>
-         </div>
-         <!-- TOP Nav Bar -->
-         <div class="iq-top-navbar">
-            <div class="iq-navbar-custom">
-               <nav class="navbar navbar-expand-lg navbar-light p-0">
-                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <i class="ri-menu-3-line"></i>
-                  </button>
-                  <div class="iq-menu-bt align-self-center">
-                     <div class="wrapper-menu">
-                        <div class="line-menu half start"></div>
-                        <div class="line-menu"></div>
-                        <div class="line-menu half end"></div>
-                     </div>
-                  </div>
-                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                     <ul class="navbar-nav ml-auto navbar-list">
-                        <li class="nav-item">
-                           <a class="search-toggle iq-waves-effect" href="#"><i class="ri-search-line"></i></a>
-                           <form action="#" class="search-box">
-                              <input type="text" class="text search-input" placeholder="Type here to search..." />
-                           </form>
-                        </li>
-                        
-                     </ul>
-                  </div>
-                  <ul class="navbar-list">
-                     <li>
-                        <a href="#" class="search-toggle iq-waves-effect bg-primary text-white"><img src="../images/user/1.jpg" class="img-fluid rounded" alt="user"></a>
-                        <div class="iq-sub-dropdown iq-user-dropdown">
-                           <div class="iq-card shadow-none m-0">
-                              <div class="iq-card-body p-0 ">
-                                 <div class="bg-primary p-3">
-                                    <h5 class="mb-0 text-white line-height">Hello <span id="username"></span></h5>
-                                    <span class="text-white font-size-12">Available</span>
-                                 </div>
-                                 <!-- <a href="#" class="iq-sub-card iq-bg-primary-hover">
+               </div>
+               <ul class="navbar-list">
+                  <li>
+                     <a href="#" class="search-toggle iq-waves-effect bg-primary text-white"><img
+                           src="../images/user/1.jpg" class="img-fluid rounded" alt="user"></a>
+                     <div class="iq-sub-dropdown iq-user-dropdown">
+                        <div class="iq-card shadow-none m-0">
+                           <div class="iq-card-body p-0 ">
+                              <div class="bg-primary p-3">
+                                 <h5 class="mb-0 text-white line-height">Hello <span id="username"></span></h5>
+                                 <span class="text-white font-size-12">Available</span>
+                              </div>
+                              <!-- <a href="#" class="iq-sub-card iq-bg-primary-hover">
                                     <div class="media align-items-center">
                                        <div class="rounded iq-card-icon iq-bg-primary">
                                           <i class="ri-file-user-line"></i>
@@ -139,120 +145,120 @@
                                        </div>
                                     </div>
                                  </a> -->
-                                 <div class="d-inline-block w-100 text-center p-3">
-                                    <a class="iq-bg-danger iq-sign-btn" href="" id="logout" role="button">Sign out<i class="ri-login-box-line ml-2"></i></a>
-                                 </div>
+                              <div class="d-inline-block w-100 text-center p-3">
+                                 <a class="iq-bg-danger iq-sign-btn" href="" id="logout" role="button">Sign out<i
+                                       class="ri-login-box-line ml-2"></i></a>
                               </div>
                            </div>
                         </div>
-                     </li>
-                  </ul>
-               </nav>
-            </div>
-         </div>
-         <!-- TOP Nav Bar END -->
-         <!-- Page Content  -->
-         <div id="content-page" class="content-page">
-            <div class="container-fluid">
-                <div class="row text-center">
-                    <div class=" col-lg-12 iq-card tbback" style=""><br>
-                    <div class="table-responsive">
-                        <table id="datatable" class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Email</th>
-                                    <th>Password</th>
-                                    <th>Actived</th>
-                                    <th colspan="3">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
                      </div>
-                    </div>
-                </div>
+                  </li>
+               </ul>
+            </nav>
+         </div>
+      </div>
+      <!-- TOP Nav Bar END -->
+      <!-- Page Content  -->
+      <div id="content-page" class="content-page">
+         <div class="container-fluid">
+            <div class="row text-center">
+               <div class="table-responsive">
+                  <table id="datatable" class="table table-bordered">
+                     <thead>
+                        <tr>
+                           <th>Email</th>
+                           <th>Password</th>
+                           <th>Actived</th>
+                           <th colspan="3">Action</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                     </tbody>
+                  </table>
+               </div>
             </div>
          </div>
       </div>
-      <!-- Wrapper END -->
-      <!-- Footer -->
-      <footer class="bg-white iq-footer">
-         <div class="container-fluid">
-            <div class="row">
-               <!-- <div class="col-lg-6 text-right">
+   </div>
+   </div>
+   <!-- Wrapper END -->
+   <!-- Footer -->
+   <footer class="bg-white iq-footer">
+      <div class="container-fluid">
+         <div class="row">
+            <!-- <div class="col-lg-6 text-right">
                   Copyright 2020 <a href="#">Sofbox</a> All Rights Reserved.
                </div> -->
-            </div>
          </div>
-      </footer>
+      </div>
+   </footer>
 
-      <script src="../js/services/db.js"></script>
-      <script src="../js/services/checkuser.js"></script>
-      <script src="../js/jquery.min.js"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-      <script src="../js/popper.min.js"></script>
-      <script src="../js/bootstrap.min.js"></script>
-      <!-- Appear JavaScript -->
-      <script src="../js/jquery.appear.js"></script>
-      <!-- Countdown JavaScript -->
-      <script src="../js/countdown.min.js"></script>
-      <!-- Counterup JavaScript -->
-      <script src="../js/waypoints.min.js"></script>
-      <script src="../js/jquery.counterup.min.js"></script>
-      <!-- Wow JavaScript -->
-      <script src="../js/wow.min.js"></script>
-      <!-- Apexcharts JavaScript -->
-      <script src="../js/apexcharts.js"></script>
-      <!-- Slick JavaScript -->
-      <script src="../js/slick.min.js"></script>
-      <!-- Select2 JavaScript -->
-      <script src="../js/select2.min.js"></script>
-      <!-- Owl Carousel JavaScript -->
-      <script src="../js/owl.carousel.min.js"></script>
-      <!-- Magnific Popup JavaScript -->
-      <script src="../js/jquery.magnific-popup.min.js"></script>
-      <!-- Smooth Scrollbar JavaScript -->
-      <script src="../js/smooth-scrollbar.js"></script>
-      <!-- lottie JavaScript -->
-      <script src="../js/lottie.js"></script>
-      <!-- Chart Custom JavaScript -->
-      <script src="../js/chart-custom.js"></script>
-      <!-- Custom JavaScript -->
-      <script src="../js/custom.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+   <script src="../js/services/db.js"></script>
+   <script src="../js/services/checkuser.js"></script>
+   <script src="../js/jquery.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+   <script src="../js/popper.min.js"></script>
+   <script src="../js/bootstrap.min.js"></script>
+   <!-- Appear JavaScript -->
+   <script src="../js/jquery.appear.js"></script>
+   <!-- Countdown JavaScript -->
+   <script src="../js/countdown.min.js"></script>
+   <!-- Counterup JavaScript -->
+   <script src="../js/waypoints.min.js"></script>
+   <script src="../js/jquery.counterup.min.js"></script>
+   <!-- Wow JavaScript -->
+   <script src="../js/wow.min.js"></script>
+   <!-- Apexcharts JavaScript -->
+   <script src="../js/apexcharts.js"></script>
+   <!-- Slick JavaScript -->
+   <script src="../js/slick.min.js"></script>
+   <!-- Select2 JavaScript -->
+   <script src="../js/select2.min.js"></script>
+   <!-- Owl Carousel JavaScript -->
+   <script src="../js/owl.carousel.min.js"></script>
+   <!-- Magnific Popup JavaScript -->
+   <script src="../js/jquery.magnific-popup.min.js"></script>
+   <!-- Smooth Scrollbar JavaScript -->
+   <script src="../js/smooth-scrollbar.js"></script>
+   <!-- lottie JavaScript -->
+   <script src="../js/lottie.js"></script>
+   <!-- Chart Custom JavaScript -->
+   <script src="../js/chart-custom.js"></script>
+   <!-- Custom JavaScript -->
+   <script src="../js/custom.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
 
-      <script>
-         var user;
-         $(document).ready(()=>{
-               user = JSON.parse(localStorage.getItem("user"));
-               if(user == ""){
-                  window.location = "index.html";
-               }
-               $('#username').text(user.email);
+   <script>
+      var user;
+      $(document).ready(() => {
+         user = JSON.parse(localStorage.getItem("user"));
+         if (user == null) {
+            window.location = "../index.html";
+         }
+         $('#username').text(user.email);
+      });
+      $('#logout').on('click', (e) => {
+         e.preventDefault();
+         firebase.auth().signOut().then(() => {
+            window.location = "../index.html";
          });
-         $('#logout').on('click',(e)=>{
-            e.preventDefault();
-            firebase.auth().signOut().then(()=>{
-               window.location = "../index.html";
-            });
-         });
+      });
 
 
-        firebase.firestore().collection('faculty').onSnapshot(function(s) {
-            var a = s.docs;
-            var templete = ``;
-            $('#datatable  > tr').remove();
-            a.forEach((doc)=>{
-                var btn;
-                var btn2;
-               if(doc.data().activated){
-                    btn = `<button class="btn btn-sm btn-danger" id="deactbtn" onclick="deact('${doc.id}');">deactivate</button>`;
-               }else{
-                    btn = `<button class="btn btn-sm btn-success" id="actbtn" onclick="act('${doc.id}');">activate</button>`;
-               }
-               templete += `
+      firebase.firestore().collection('faculty').onSnapshot(function (s) {
+         var a = s.docs;
+         var templete = ``;
+         $('#datatable  > tr').remove();
+         a.forEach((doc) => {
+            var btn;
+            var btn2;
+            if (doc.data().activated) {
+               btn = `<button class="btn btn-sm btn-danger" id="deactbtn" onclick="deact('${doc.id}');">deactivate</button>`;
+            } else {
+               btn = `<button class="btn btn-sm btn-success" id="actbtn" onclick="act('${doc.id}');">activate</button>`;
+            }
+            templete += `
                     <tr>
                         <td>${doc.data().email}</td>
                         <td>${doc.data().password}</td>
@@ -262,78 +268,79 @@
                         <td><button class="btn btn-sm btn-primary" id="deactbtn" onclick="setadminrole('${doc.data().email}')">Admin</button></td>
                     </tr>
                `;
-            });
-            $('#datatable').append(templete);
-        });
+         });
+         $('#datatable').append(templete);
+      });
 
-        function deact(doc){
-            firebase.firestore().collection('faculty').doc(doc).update({
-               activated:false,
-            }).then(()=>{});
-        }
+      function deact(doc) {
+         firebase.firestore().collection('faculty').doc(doc).update({
+            activated: false,
+         }).then(() => { });
+      }
 
-        function act(doc){
-            firebase.firestore().collection('faculty').doc(doc).update({
-                activated:true,
-            }).then(()=>{});
-        }
+      function act(doc) {
+         firebase.firestore().collection('faculty').doc(doc).update({
+            activated: true,
+         }).then(() => { });
+      }
 
-        function deleteacc(id,email){
-            if(confirm("Want to delete?")){
-               const deleteUser = firebase.functions().httpsCallable('deleteUser');
-               deleteUser({email:email}).then((res)=>{
-                  console.log(res);
-                  firebase.firestore().collection("faculty").where("email", "==", email)
+      function deleteacc(id, email) {
+         if (confirm("Want to delete?")) {
+            const deleteUser = firebase.functions().httpsCallable('deleteUser');
+            deleteUser({ email: email }).then((res) => {
+               console.log(res);
+               firebase.firestore().collection("faculty").where("email", "==", email)
                   .get()
                   .then(querySnapshot => {
                      querySnapshot.forEach((doc) => {
                         doc.ref.delete().then(() => {
                            alert("Document successfully deleted!");
-                        }).catch(function(error) {
+                        }).catch(function (error) {
                            alert("Error removing document: ", error);
                         });
                      });
                   })
-                  .catch(function(error) {
+                  .catch(function (error) {
                      alert("Error getting documents: ", error);
                   });
-               });
-            }
+            });
          }
+      }
 
-         toastr.options = {
-            "closeButton": true,"debug": false,"newestOnTop": true,"progressBar": true,"positionClass": "toast-top-right",
-            "preventDuplicates": false,"onclick": null,"showDuration": "300","hideDuration": "1000","timeOut": "4000",
-            "extendedTimeOut": "1000","showEasing": "swing","hideEasing": "linear","showMethod": "fadeIn","hideMethod": "fadeOut"
-         }
-        
-         function setadminrole(email){
-            if(confirm(`Are you sure to add admin role to ${email}`)){
-               firebase.firestore().collection("faculty").where("email", "==", email)
+      toastr.options = {
+         "closeButton": true, "debug": false, "newestOnTop": true, "progressBar": true, "positionClass": "toast-top-right",
+         "preventDuplicates": false, "onclick": null, "showDuration": "300", "hideDuration": "1000", "timeOut": "4000",
+         "extendedTimeOut": "1000", "showEasing": "swing", "hideEasing": "linear", "showMethod": "fadeIn", "hideMethod": "fadeOut"
+      }
+
+      function setadminrole(email) {
+         if (confirm(`Are you sure to add admin role to ${email}`)) {
+            firebase.firestore().collection("faculty").where("email", "==", email)
                .get()
                .then(querySnapshot => {
                   querySnapshot.forEach((doc) => {
                      console.log(doc.id);
                      firebase.firestore().collection('admin').doc(doc.id).set(doc.data())
-                     .then(()=>{
-                        console.log('datatransfered');
-                        doc.ref.delete().then(() => {
-                           toastr["success"](`successfully made <b>${email}</b> as Admin`);
-                           const addAdminRole = firebase.functions().httpsCallable('addAdminRole');
-                           addAdminRole({email:email}).then((res)=>{
-                              
-                           });
-                        })
-                     });
+                        .then(() => {
+                           console.log('datatransfered');
+                           doc.ref.delete().then(() => {
+                              toastr["success"](`successfully made <b>${email}</b> as Admin`);
+                              const addAdminRole = firebase.functions().httpsCallable('addAdminRole');
+                              addAdminRole({ email: email }).then((res) => {
+
+                              });
+                           })
+                        });
                   });
                })
-               .catch(function(error) {
+               .catch(function (error) {
                   alert("Error getting documents: ", error);
                });
-            }
          }
+      }
 
 
-      </script>
-   </body>
+   </script>
+</body>
+
 </html>

@@ -1,0 +1,54 @@
+{
+    "model":{
+        "scheme-2017":{
+            "internal":{
+                "headerSection":{
+                    "Reg. No":10,
+                    "headerDetails":{
+                        "title":"G.PULLAREDDY ENGINEERING COLLEGE(AUTONOMOUS): KURNOOL",
+                        "examDetails":"",
+                        "sessional":"",
+                        "department":"",
+                        "subject":"",
+                        "scheme":"Scheme-2017"
+                    },
+                    "examDetails":{
+                        "time":"",
+                        "date":"",
+                        "marks":"30",
+                        "note":"Answer all from question No.1 and one question from each."
+                    }
+                },
+                "questionsSection":{
+                    "section1":{
+                        "count":3,
+                        "marks":2
+                    },
+                    "sections":[
+                        {
+                            "name":"Section-I",
+                            "marks":8,
+                            "type":"or",
+                            "co":""
+                        },
+                        {
+                            "name":"Section-II",
+                            "marks":8,
+                            "type":"or",
+                            "co":""
+                        },
+                        {
+                            "name":"Section-II",
+                            "marks":8,
+                            "type":"or",
+                            "co":""
+                        }
+                    ]
+                }
+            },
+            "external":{
+    
+            }
+        }
+    }
+}
